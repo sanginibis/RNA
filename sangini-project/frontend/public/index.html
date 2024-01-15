@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app"/>
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
+
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+
+
+    <!--
+      This is the section handles the css requirements for rna sequence visalisation
+    -->
+    <link rel="stylesheet" href="seqViz.css" />
+
+    <!--
+      This is the section for rendering the fornacjs svg layouts for RNA visualisations
+    -->
+    <script src="https://unpkg.com/d3@3.5"></script>
+    <script src='fornac.js'></script>
+    <link rel="stylesheet" href="fornac.css" />
+
+        <!--
+          NUSSINOV LAYOUT SCRIPT
+        -->
+        <script type='text/javascript'>
+          let container_nussinov;
+
+          function nussinov_layout() {
+
+            // code for nussinov layout
+            container_nussinov = new fornac.FornaContainer('#rna_ss_nussinov', { 'animation': true, 'zoomable': true, 'displayAllLinks': true, 'editable': true });
+
+            let rnaString_nussinov = document.getElementById('RNASequence').value;
+            let rnaSecondaryStructure_nussinov = document.getElementById('RNANussinovStructure').value;
+
+            let options_nussinov = { 'structure': rnaSecondaryStructure_nussinov, 'sequence': rnaString_nussinov };
+            container_nussinov.addRNA(options_nussinov.structure, options_nussinov);
+
+          }
+        </script>
+
+
+        <!--
+          ZUKER LAYOUT SCRIPT
+        -->
+        <script type='text/javascript'>
+          let container_zuker;
+
+          function zuker_layout() {
+            // code for _zuker layout
+            container_zuker = new fornac.FornaContainer('#rna_ss_zuker', { 'animation': true, 'zoomable': true, 'displayAllLinks': true, 'editable': true });
+
+            let rnaString_zuker = document.getElementById('RNASequence').value;
+            let rnaSecondaryStructure_zuker = document.getElementById('RNAZukerStructure').value;
+
+            let options_zuker = { 'structure': rnaSecondaryStructure_zuker, 'sequence': rnaString_zuker };
+            container_zuker.addRNA(options_zuker.structure, options_zuker);
+          }
+        </script>
+
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+  </body>
+</html>

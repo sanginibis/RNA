@@ -1,0 +1,9 @@
+1. Create the virtual environment
+
+2. Make sure that the PYTHONPATH is SET as
+export PYTHONPATH="${PYTHONPATH}:/Users/gini/WIP/TechNLazy/sangini-project/bioinfo_apis/src"
+export PYTHONPATH="${PYTHONPATH}:/Users/gini/WIP/TechNLazy/sangini-project/bioinfo_apis/tests"
+
+3. Add .vscode folder with settings.json
+{"python.defaultInterpreterPath": "/Users/gini/WIP/TechNLazy/sangini-project/bioinfo_apis/bio/bin/python3.10"}
+in your vscode workspace

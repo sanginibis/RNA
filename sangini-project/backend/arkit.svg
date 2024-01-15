@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="391px" preserveAspectRatio="none" style="width:536px;height:391px;" version="1.1" viewBox="0 0 536 391" width="536px" zoomAndPan="magnify"><defs/><g><!--MD5=[a6f11bb19cee6b13000111f5ad685e8b]
+cluster Dependencies--><path d="M25,297 L127,297 A4.5,4.5 0 0 1 130,300 L137,316.9688 L403,316.9688 A3,3 0 0 1 406,319.9688 L406,376 A3,3 0 0 1 403,379 L25,379 A3,3 0 0 1 22,376 L22,300 A3,3 0 0 1 25,297 " fill="#FFFFFF" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="22" x2="137" y1="316.9688" y2="316.9688"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="102" x="26" y="310.1387">Dependencies</text><!--MD5=[2175ea9c213c2ac0d57c4a91b2603145]
+entity bcryptjs--><rect fill="#F8F8F8" height="33.9688" rx="3" ry="3" style="stroke: #383838; stroke-width: 1.0;" width="70" x="242" y="329"/><rect fill="#F8F8F8" height="5" style="stroke: #383838; stroke-width: 1.0;" width="10" x="237" y="334"/><rect fill="#F8F8F8" height="5" style="stroke: #383838; stroke-width: 1.0;" width="10" x="237" y="352.9688"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="50" x="252" y="350.1387">bcryptjs</text><!--MD5=[6d151e53a42aadf92577082572a20d90]
+entity express--><rect fill="#F8F8F8" height="33.9688" rx="3" ry="3" style="stroke: #383838; stroke-width: 1.0;" width="70" x="158" y="329"/><rect fill="#F8F8F8" height="5" style="stroke: #383838; stroke-width: 1.0;" width="10" x="153" y="334"/><rect fill="#F8F8F8" height="5" style="stroke: #383838; stroke-width: 1.0;" width="10" x="153" y="352.9688"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="50" x="168" y="350.1387">express</text><!--MD5=[456d7759478929e3d83f68f29b03eb91]
+entity jsonwebtoken--><rect fill="#F8F8F8" height="33.9688" rx="3" ry="3" style="stroke: #383838; stroke-width: 1.0;" width="106" x="38" y="329"/><rect fill="#F8F8F8" height="5" style="stroke: #383838; stroke-width: 1.0;" width="10" x="33" y="334"/><rect fill="#F8F8F8" height="5" style="stroke: #383838; stroke-width: 1.0;" width="10" x="33" y="352.9688"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="86" x="48" y="350.1387">jsonwebtoken</text><!--MD5=[f62dd8a1380cad8b40496ca61d0c9a9f]
+entity mysql2--><rect fill="#F8F8F8" height="33.9688" rx="3" ry="3" style="stroke: #383838; stroke-width: 1.0;" width="63" x="326.5" y="329"/><rect fill="#F8F8F8" height="5" style="stroke: #383838; stroke-width: 1.0;" width="10" x="321.5" y="334"/><rect fill="#F8F8F8" height="5" style="stroke: #383838; stroke-width: 1.0;" width="10" x="321.5" y="352.9688"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="43" x="336.5" y="350.1387">mysql2</text><ellipse cx="89.0919" cy="213.8774" fill="#F8F8F8" rx="22.0919" ry="12.8774" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="27" x="75.5919" y="217.3618">auth</text><ellipse cx="96.1335" cy="46.3774" fill="#F8F8F8" rx="46.1335" ry="12.8774" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="61" x="65.6335" y="49.8618">backend</text><ellipse cx="422.098" cy="267.8774" fill="#F8F8F8" rx="42.598" ry="12.8774" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="56" x="394.098" y="271.3618">db.config</text><ellipse cx="467.0072" cy="214.0014" fill="#F8F8F8" rx="58.0072" ry="14.0014" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="85" x="424.5072" y="217.4858">dbConnection</text><ellipse cx="180.9203" cy="46.3774" fill="#F8F8F8" rx="24.9203" ry="12.8774" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="31" x="165.4203" y="49.8618">error</text><ellipse cx="424.0537" cy="46.7107" fill="#F8F8F8" rx="61.5537" ry="14.7107" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="94" x="377.0537" y="50.1951">testConnection</text><ellipse cx="128.8909" cy="267.8774" fill="#F8F8F8" rx="41.8909" ry="12.8774" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="55" x="101.3909" y="271.3618">url.config</text><ellipse cx="275.0667" cy="102.3133" fill="#F8F8F8" rx="59.5667" ry="14.3133" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="89" x="230.5667" y="105.7977">user.controller</text><ellipse cx="274.9787" cy="46.3957" fill="#F8F8F8" rx="54.9787" ry="13.3957" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="77" x="236.4787" y="49.8801">users.routes</text><ellipse cx="275.0667" cy="158.3133" fill="#F8F8F8" rx="59.5667" ry="14.3133" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="89" x="230.5667" y="161.7977">users.services</text><!--MD5=[9580847be2e1dbdcea047c0312f44a92]
+link auth to jsonwebtoken--><path d="M85.5338,227.136 C83.4698,235.005 81.0533,245.52 80,255 C77.3782,278.596 81.6636,305.627 85.6276,323.8559 " fill="none" id="auth-&gt;jsonwebtoken" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="86.7311,328.7538,88.6551,319.0947,85.6321,323.8761,80.8507,320.8531,86.7311,328.7538" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[7af46a04007319a2eb735d816cab1e1e]
+link auth to url.config--><path d="M97.483,226.028 C103.0557,233.272 110.438,242.869 116.657,250.954 " fill="none" id="auth-&gt;url.config" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="119.973,255.265,117.6558,245.6926,116.9243,251.302,111.3149,250.5705,119.973,255.265" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[76fbcbf133e38f8916fde1dcb70cef15]
+link <b>backend</b> to auth--><path d="M95.4853,59.67 C94.2565,88.721 91.1487,162.199 89.7284,195.779 " fill="none" id="&lt;b&gt;backend&lt;/b&gt;-&gt;auth" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="89.5155,200.813,93.8925,191.9902,89.7269,195.8175,85.8996,191.6519,89.5155,200.813" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[da2ccb69277f23057049d674d76a4e4a]
+link <b>backend</b> to error--><path d="M142.152,46.5 C144.998,46.5 147.843,46.5 150.688,46.5 " fill="none" id="&lt;b&gt;backend&lt;/b&gt;-&gt;error" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="155.81,46.5,146.81,42.5,150.81,46.5,146.81,50.5,155.81,46.5" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[c42cfbb52cc6e7f8901dee08a8c65051]
+link <b>backend</b> to express--><path d="M86.1667,59.518 C71.3467,78.887 45,118.768 45,157.5 C45,157.5 45,157.5 45,215 C45,248.203 52.5536,262.315 80,281 C106.25,298.8701 123.438,273.228 151,289 C165.091,297.0635 175.913,311.9615 183.041,324.3649 " fill="none" id="&lt;b&gt;backend&lt;/b&gt;-&gt;express" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="185.499,328.8044,184.6391,318.9932,183.0771,324.4301,177.6402,322.8681,185.499,328.8044" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[63a3d94c6c13823385cea0a37561faa3]
+link <b>backend</b> to testConnection--><path d="M115.764,34.599 C127.104,28.469 141.86,21.637 156,18.5 C231.498,1.751 253.475,7.345 330,18.5 C348.782,21.238 369.03,26.9 385.906,32.421 " fill="none" id="&lt;b&gt;backend&lt;/b&gt;-&gt;testConnection" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="391.03,34.126,383.7532,27.4892,386.2857,32.5474,381.2275,35.08,391.03,34.126" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[92abb8a4e516392ec82d506cebb2d300]
+link <b>backend</b> to url.config--><path d="M98.9482,59.497 C100.8522,67.528 103.2851,78.356 105,88 C115.482,146.948 123.68,217.548 127.169,249.621 " fill="none" id="&lt;b&gt;backend&lt;/b&gt;-&gt;url.config" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="127.727,254.79,130.7368,245.4123,127.1897,249.8189,122.7831,246.2719,127.727,254.79" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[cfc05b92d8048ad9d4202cfdac6aad90]
+link <b>backend</b> to users.routes--><path d="M115.764,34.599 C127.104,28.469 141.86,21.637 156,18.5 C177.695,13.687 184.189,14.243 206,18.5 C219.89,21.211 234.518,26.723 246.712,32.145 " fill="none" id="&lt;b&gt;backend&lt;/b&gt;-&gt;users.routes" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="251.433,34.293,244.8974,26.9251,246.8819,32.2225,241.5845,34.207,251.433,34.293" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[fc9deb32eb6ba222598931b0c5e35d68]
+link dbConnection to db.config--><path d="M455.876,227.854 C449.728,234.959 442.04,243.842 435.544,251.349 " fill="none" id="dbConnection-&gt;db.config" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="432.074,255.359,440.9884,251.1716,435.3462,251.5784,434.9394,245.9362,432.074,255.359" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[eeaa09af3d9f30b5d79cb8dcc9f7764b]
+link dbConnection to mysql2--><path d="M472.162,228.144 C476.791,242.224 481.521,264.736 472,281 C455.43,309.3054 421.242,326.0479 394.607,335.2624 " fill="none" id="dbConnection-&gt;mysql2" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="389.727,336.8964,399.5315,337.8298,394.468,335.3079,396.9899,330.2443,389.727,336.8964" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[4a9bef8a1a8210d6d0ca061ab55521b4]
+link testConnection to dbConnection--><path d="M427.519,61.044 C435.211,90.648 453.529,161.152 462.24,194.68 " fill="none" id="testConnection-&gt;dbConnection" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="463.553,199.732,465.1586,190.0149,462.2943,194.893,457.4162,192.0288,463.553,199.732" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[e424b2351711f1a723f882dbda7e14f3]
+link user.controller to bcryptjs--><path d="M306.83,114.884 C319.852,121.299 333.581,130.743 341,144 C375.114,204.959 322.86,286.667 294.004,324.361 " fill="none" id="user.controller-&gt;bcryptjs" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="290.609,328.7353,299.2873,324.0784,293.6748,324.7855,292.9677,319.173,290.609,328.7353" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[53bc364fe37087da8c8d0c41c7cf29cb]
+link user.controller to express--><path d="M243.511,114.872 C230.283,121.321 216.109,130.797 208,144 C172.946,201.073 181.925,285.166 188.688,323.9684 " fill="none" id="user.controller-&gt;express" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="189.581,328.9144,191.918,319.3468,188.6925,323.994,184.0453,320.7685,189.581,328.9144" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[f2c0a9eeff7c6d5ca537744752898b6b]
+link user.controller to users.services--><path d="M275,117.126 C275,123.6 275,131.445 275,138.493 " fill="none" id="user.controller-&gt;users.services" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="275,143.69,279,134.69,275,138.69,271,134.69,275,143.69" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[75ac0a16a181fc1c407408d39dd0af63]
+link users.routes to express--><path d="M304.762,57.888 C318.377,64.307 333.187,74.039 341,88 C359.449,120.967 354.668,137.781 341,173 C315.733,238.108 279.559,235.224 235,289 C225.417,300.5656 215.297,314.0164 207.393,324.8364 " fill="none" id="users.routes-&gt;express" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="204.369,328.9956,212.8967,324.0683,207.3092,324.9514,206.426,319.364,204.369,328.9956" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[dc6addf7de37223600b02a49d820501f]
+link users.routes to url.config--><path d="M249.137,58.44 C235.457,65.287 219.22,75.242 208,88 C164.348,137.634 141.413,215.235 132.921,249.609 " fill="none" id="users.routes-&gt;url.config" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="131.681,254.744,137.6807,246.9335,132.854,249.8835,129.904,245.0568,131.681,254.744" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[8263f0107ed840b8a846851f8e607c69]
+link users.routes to user.controller--><path d="M275,60.024 C275,66.809 275,75.324 275,82.871 " fill="none" id="users.routes-&gt;user.controller" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="275,87.908,279,78.908,275,82.908,271,78.908,275,87.908" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[32af1f96e7be935b61416928e469443b]
+link users.services to auth--><path d="M238.252,170.07 C201.27,180.707 145.278,196.812 113.429,205.973 " fill="none" id="users.services-&gt;auth" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="108.532,207.382,118.2872,208.7372,113.337,205.9993,116.0749,201.0492,108.532,207.382" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[a4d56aa1d42448bd84384574296f6f87]
+link users.services to bcryptjs--><path d="M275.147,173.14 C275.491,205.039 276.35,284.724 276.766,323.3419 " fill="none" id="users.services-&gt;bcryptjs" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="276.825,328.7311,280.7275,319.6884,276.771,323.7314,272.728,319.7748,276.825,328.7311" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[079d8a6bda13387d169cfa871e156721]
+link users.services to dbConnection--><path d="M312.475,169.942 C345.136,179.043 392.412,192.216 426.058,201.592 " fill="none" id="users.services-&gt;dbConnection" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="430.92,202.946,423.3247,196.6762,426.1036,201.6034,421.1764,204.3823,430.92,202.946" style="stroke: #000000; stroke-width: 0.5;"/><script type="text/plantuml"><![CDATA[MD5=[d9871ee82dd538add8b6eebe508baf8c]
+@startuml
+
+scale max 1920 width
+top to bottom direction
+
+skinparam nodesep 14
+skinparam ranksep 27
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam roundCorner 6
+skinparam dpi 150
+skinparam arrowColor black
+skinparam arrowThickness 0.5
+skinparam packageTitleAlignment left
+
+skinparam usecase {
+  borderThickness 0.5
+}
+
+skinparam rectangle {
+  borderThickness 0.5
+}
+
+skinparam component {
+  borderThickness 1
+}
+
+
+(auth)
+(<b>backend</b>)
+(db.config)
+(dbConnection)
+(error)
+(testConnection)
+(url.config)
+(user.controller)
+(users.routes)
+(users.services)
+
+package "Dependencies" {
+  [bcryptjs]
+  [express]
+  [jsonwebtoken]
+  [mysql2]
+}
+
+(auth) ---> [jsonwebtoken]
+(auth) --> (url.config)
+(<b>backend</b>) -[thickness=1]> (auth)
+(<b>backend</b>) -[thickness=1]> (error)
+(<b>backend</b>) --[thickness=1]> [express]
+(<b>backend</b>) -[thickness=1]> (testConnection)
+(<b>backend</b>) -[thickness=1]> (url.config)
+(<b>backend</b>) -[thickness=1]> (users.routes)
+(dbConnection) --> (db.config)
+(dbConnection) ---> [mysql2]
+(testConnection) --> (dbConnection)
+(user.controller) ---> [bcryptjs]
+(user.controller) ---> [express]
+(user.controller) --> (users.services)
+(users.routes) ---> [express]
+(users.routes) --> (url.config)
+(users.routes) --> (user.controller)
+(users.services) --> (auth)
+(users.services) ---> [bcryptjs]
+(users.services) --> (dbConnection)
+
+@enduml
+
+
+' View and edit on https://arkit.pro
+]]></script></g></svg>
