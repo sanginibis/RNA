@@ -1,9 +1,33 @@
 1. Create the virtual environment
+Reference: https://docs.python.org/3/library/venv.html
+On windows:
+(a) python -m venv /path/to/new/virtual/environment
+(b) In Windows PowerShell, activate using, <venv>\Scripts\Activate.ps1
+(c) In Windows CMD, activate using, <venv>\Scripts\activate.bat
 
-2. Make sure that the PYTHONPATH is SET as
-export PYTHONPATH="${PYTHONPATH}:/Users/gini/WIP/TechNLazy/sangini-project/bioinfo_apis/src"
-export PYTHONPATH="${PYTHONPATH}:/Users/gini/WIP/TechNLazy/sangini-project/bioinfo_apis/tests"
+2. Vscode setup
+(a) Create a folder .vscode
+(b) Create file within .vscode as settings.json
+(c) Add the full path of "python" from the virtual environment's python as below
+{"python.defaultInterpreterPath": "/path/to/new/virtual/environment's python3.10"}
+(d) Add the python related extensions to vscode
+autopep8 (pip install autopep8 https://pypi.org/project/autopep8/. It automatically formats the python code.).
+Pylance (https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance. Vscode extension that provides Python IntelliSense experience.)
+Pylint (pip install pylint https://pypi.org/project/pylint/. Install if you need to enforce coding standards.)
 
-3. Add .vscode folder with settings.json
-{"python.defaultInterpreterPath": "/Users/gini/WIP/TechNLazy/sangini-project/bioinfo_apis/bio/bin/python3.10"}
-in your vscode workspace
+
+3. If you find custom created module not found issues then Make sure that the PYTHONPATH is SET as
+export PYTHONPATH="${PYTHONPATH}:your/src/folder"
+
+4. Install all the dependecies mentioned in the requirements.txt file using the pip install command.
+BEFORE INSTALLING package or module MAKE SURE you have activated your virtual environment.
+While working further in the project you can update your requirements.txt by running the command
+
+5. The main project related packages used are
+biopython (https://biopython.org/). This is used for biological RNA sequence calculations.
+seqfold (https://github.com/Lattice-Automation/seqfold). This is used to predict the Zuker RNA structure and the minimum free energy.
+numpy (https://numpy.org/). This is used for numerical and array handling.
+
+coverage (https://coverage.readthedocs.io/en/7.4.0/). This is used to measure what is the extent the code has been covered when the automated tests are run.
+Flask (https://flask.palletsprojects.com/en/3.0.x/). This provides the relevant framework to expose the python features as REST APIs.
+pytest (https://docs.pytest.org/en/7.4.x/). This is used to write the test cases.

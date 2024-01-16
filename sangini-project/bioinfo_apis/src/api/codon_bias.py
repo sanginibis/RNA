@@ -1,4 +1,3 @@
-import json
 import math
 from api.rna_data import reference_rscus
 from api.rna_data import codon_table
