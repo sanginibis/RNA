@@ -12,3 +12,9 @@ This will install all the dependencies mentioned in the package.json.
 If package.json is NOT present then run
 npm init 
 to create a new application.
+
+2. To start the server
+npm run server
+
+3. To create the UML
+npx arkit ./ -o backend_uml.svg

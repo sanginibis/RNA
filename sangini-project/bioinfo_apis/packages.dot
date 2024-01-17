@@ -1,0 +1,16 @@
+digraph "packages" {
+rankdir=BT
+charset="utf-8"
+"__init__" [color="black", label=<__init__>, shape="box", style="solid"];
+"api" [color="black", label=<api>, shape="box", style="solid"];
+"api.codon_bias" [color="black", label=<api.codon_bias>, shape="box", style="solid"];
+"api.common_validations" [color="black", label=<api.common_validations>, shape="box", style="solid"];
+"api.gc_calculations" [color="black", label=<api.gc_calculations>, shape="box", style="solid"];
+"api.nussinov_predicted_structure" [color="black", label=<api.nussinov_predicted_structure>, shape="box", style="solid"];
+"api.rna_data" [color="black", label=<api.rna_data>, shape="box", style="solid"];
+"api.test_server" [color="black", label=<api.test_server>, shape="box", style="solid"];
+"api.translate_codons" [color="black", label=<api.translate_codons>, shape="box", style="solid"];
+"api.zuker_predicted_structure" [color="black", label=<api.zuker_predicted_structure>, shape="box", style="solid"];
+"api.codon_bias" -> "api.rna_data" [arrowhead="open", arrowtail="none"];
+"api.translate_codons" -> "api.rna_data" [arrowhead="open", arrowtail="none"];
+}

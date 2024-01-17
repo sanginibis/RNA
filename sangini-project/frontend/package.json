@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "arkit": "^1.6.4",
     "axios": "^1.6.5",
     "d3": "~3.5.13",
     "polished": "^4.2.2",

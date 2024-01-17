@@ -1,0 +1,11 @@
+digraph "classes" {
+rankdir=BT
+charset="utf-8"
+"api.codon_bias.CodonBiasAnalyzer" [color="black", fontcolor="black", label=<{api.codon_bias.CodonBiasAnalyzer|codon_table : dict<br ALIGN="LEFT"/>|analyze_codon_bias(rna_sequence)<br ALIGN="LEFT"/>calculate_cai(rscu, reference_rscu)<br ALIGN="LEFT"/>calculate_enc(codon_counts)<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"api.common_validations.CommonValidations" [color="black", fontcolor="black", label=<{api.common_validations.CommonValidations|<br ALIGN="LEFT"/>|require_json()<br ALIGN="LEFT"/>valid_rna_sequence()<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"api.gc_calculations.GCCalculations" [color="black", fontcolor="black", label=<{api.gc_calculations.GCCalculations|<br ALIGN="LEFT"/>|get_gc_content_for_123(rnaSeq)<br ALIGN="LEFT"/>get_gc_fraction(rnaSeq)<br ALIGN="LEFT"/>get_gc_molecular_weight(rnaSeq)<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"api.nussinov_predicted_structure.NussinovPredictedStructure" [color="black", fontcolor="black", label=<{api.nussinov_predicted_structure.NussinovPredictedStructure|<br ALIGN="LEFT"/>|couple(pair)<br ALIGN="LEFT"/>dot_write(rna, fold)<br ALIGN="LEFT"/>fill(nm, rna)<br ALIGN="LEFT"/>get_predicted_structure(rna)<br ALIGN="LEFT"/>init_matrix(rna)<br ALIGN="LEFT"/>traceback(nm, rna, fold, i, L)<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"api.test_server.TestServer" [color="black", fontcolor="black", label=<{api.test_server.TestServer|<br ALIGN="LEFT"/>|get_current_datetime()<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"api.translate_codons.TranslateCodons" [color="black", fontcolor="black", label=<{api.translate_codons.TranslateCodons|<br ALIGN="LEFT"/>|translate(rna_codon_string)<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"api.zuker_predicted_structure.ZukerPredictedStructure" [color="black", fontcolor="black", label=<{api.zuker_predicted_structure.ZukerPredictedStructure|<br ALIGN="LEFT"/>|dot_write(rnaSequence)<br ALIGN="LEFT"/>get_predicted_structure(rna)<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+}
