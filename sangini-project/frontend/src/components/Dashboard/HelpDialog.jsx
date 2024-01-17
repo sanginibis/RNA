@@ -5,7 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Title from './Title';
+import Title from '../Title/Title';
 import Typography from '@mui/material/Typography';
 import { Divider } from '@mui/material';
 

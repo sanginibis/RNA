@@ -5,6 +5,7 @@ from api.codon_bias import CodonBiasAnalyzer
 from api.nussinov_predicted_structure import NussinovPredictedStructure
 from api.zuker_predicted_structure import ZukerPredictedStructure
 from api.common_validations import CommonValidations
+from api.translate_codons import TranslateCodons
 
 app = Flask(__name__)
 
@@ -36,21 +37,53 @@ def bio_info_calculations():
 
 
     # get the gc related info
+    bio_info_details = []
     GCC = GCCalculations()
+
     gc_fraction = GCC.get_gc_fraction(rna_sequence)
+    bio_info_details.append({
+        "name": "G+C Fraction",
+        "data": gc_fraction
+    })
+
     gc_123 = GCC.get_gc_content_for_123(rna_sequence)
+    bio_info_details.append({
+        "name": "G+C Total",
+        "data": gc_123[0]
+    })
+    bio_info_details.append({
+        "name": "G+C First",
+        "data": gc_123[1]
+    })
+    bio_info_details.append({
+        "name": "G+C Second",
+        "data": gc_123[2]
+    })
+    bio_info_details.append({
+        "name": "G+C Third",
+        "data": gc_123[3]
+    })
+
+
     mw = GCC.get_gc_molecular_weight(rna_sequence)
+    bio_info_details.append({
+        "name": "Molecular Weight",
+        "data": mw
+    })
+
 
     # get the codon bias related info
     CBA = CodonBiasAnalyzer()
     cba_values = CBA.analyze_codon_bias(rna_sequence)
 
+    # get the translated codon oputput
+    TC = TranslateCodons()
+    tc_values = TC.translate(rna_sequence)
+
     return jsonify(
         {
-        'gc_fraction': gc_fraction,
-        'gc_123' : gc_123,
-        'molecular weight' : mw,
-        'codon values': cba_values
+            'bio_info_details' : bio_info_details,
+            'translated_codons': tc_values
         }
     ), 200
 

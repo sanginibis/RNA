@@ -1,0 +1,14 @@
+1. Installing node js
+(a) Download node js and install from https://nodejs.org/en/download
+(b) After installation, open CMD and check the version. This also tells whether it has been installed.
+node --version
+(c) Now verify whether "npm" is working. This is Node Package Manager that is used to install the libraries/packages and dependencies.
+npm --version
+(d) Now initiate the node js application by running
+npm i
+within \backend directory
+from your CMD.
+This will install all the dependencies mentioned in the package.json.
+If package.json is NOT present then run
+npm init 
+to create a new application.

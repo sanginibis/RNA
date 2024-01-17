@@ -5,6 +5,8 @@
 
 import { useRef } from "react";
 import { Circular, Linear, SeqViz } from "seqviz";
+import Paper from '@mui/material/Paper';
+import Title from '../Title/Title';
 
 
 function SeqChart({ rnaStringName, rnaString }) {
@@ -12,27 +14,39 @@ function SeqChart({ rnaStringName, rnaString }) {
   const linearRef = useRef();
 
   return (
-    <SeqViz
-      name={rnaStringName}
-      seq={rnaString}
-      annotations={[{ name: "promoter", start: 0, end: 34, direction: 1, color: "blue" }]}
-      bpColors={{ A: "#dbdb8d", C: "#98df8a", G: "#ff9896", U: "#aec7e8" }}
-      refs={{ circular, linearRef }}
-      style={{outerWidth:'100px'}}
+    <Paper
+    sx={{
+      p: 2,
+      display: 'flex',
+      flexDirection: 'column',
+      height: 295,
+    }}
     >
-      
-      {({ circularProps, linearProps, ...props }) => (
-        <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
-          <div ref={circular} style={{ height: "100%", width: "50%"}}>
-            <Circular {...circularProps} {...props} />
+      <Title>Sequence Chart</Title>
+
+      <SeqViz
+        name={rnaStringName}
+        seq={rnaString}
+        annotations={[{ name: "promoter", start: 0, end: 34, direction: 1, color: "blue" }]}
+        bpColors={{ A: "#dbdb8d", C: "#98df8a", G: "#ff9896", U: "#aec7e8" }}
+        refs={{ circular, linearRef }}
+        style={{outerWidth:'100px'}}
+      >
+        
+        {({ circularProps, linearProps, ...props }) => (
+          <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
+            <div ref={circular} style={{ height: "100%", width: "50%"}}>
+              <Circular {...circularProps} {...props} />
+            </div>
+            <div ref={linearRef} style={{ height: "100%", width: "100%" }}>
+              <Linear {...linearProps} {...props} />
+            </div>
           </div>
-          <div ref={linearRef} style={{ height: "100%", width: "100%" }}>
-            <Linear {...linearProps} {...props} />
-          </div>
-        </div>
-      )}
-      
-    </SeqViz>    
+        )}
+        
+      </SeqViz>    
+    </Paper>
+
   );
 }
 

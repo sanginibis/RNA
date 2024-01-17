@@ -6,7 +6,7 @@
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
-import Title from '../Dashboard/Title';
+import Title from '../Title/Title';
 import Box from '@mui/material/Box';
 import Spinner from '../Spinner/Spinner';
 

@@ -18,7 +18,6 @@ class GCCalculations:
  
     def get_gc_molecular_weight(self, rnaSeq):
         """Returns the molecular mass of RNA sequences as float."""
-        gc_list = list(GC123(rnaSeq))
         return molecular_weight(rnaSeq,"RNA")
 
 # for self testing the class

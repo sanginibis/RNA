@@ -5,6 +5,7 @@ from api.gc_calculations import GCCalculations
 from api.codon_bias import CodonBiasAnalyzer
 from api.nussinov_predicted_structure import NussinovPredictedStructure
 from api.zuker_predicted_structure import ZukerPredictedStructure
+from api.translate_codons import TranslateCodons
 
 from tests.test_data import rna_test_data
 
@@ -63,4 +64,13 @@ class TestGCCalculations:
         for entry in rna_test_data:
             zps_value = zps.get_predicted_structure(entry["RNASequence"])
             if zps_value:
+                assert True
+
+    def test_codon_translator(self):
+        """Tests codon translator with valid RNA sequences."""
+        TC = TranslateCodons()
+
+        for entry in rna_test_data:
+            tc_value = TC.translate(entry["RNASequence"])
+            if tc_value:
                 assert True

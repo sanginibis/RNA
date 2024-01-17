@@ -4,217 +4,129 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import AminoAcids from './AminoAcids';
 import SeqChart from './SeqChart';
 import ForContainer from '../Fornac/ForContainer'
-import TextField from '@mui/material/TextField';
-import Title from './Title';
 import FloatingActionButtons from './FloatingActionButtons'
 
-import { callApi } from '../../api/api';
-import { Button } from '@mui/material';
+import { nussinovPredictedStructure, zukerPredictedStructure } from '../../api/predictedStructure';
+import { getBioInfoData } from '../../api/bioInfoData';
 
-const headers = {
-    'Content-Type': 'application/json'
-};
+import RNAInputs from './RNAInputs';
 
 export default function Dashboard() {
-
-  // ----- textfield input values that takes the Name of the RNA sequence and the sequence ------
-  const [rnaString, setRnaString] = useState('');
-  const [rnaStringName, setRnaStringName] = useState('');
-  const [rnaStringErrorMessage, setRnaStringErrorMessage] = useState('');
-
-
-  // ----- textfield that renders the dot btacket structure values ------
-  const [rnaNussinovStructure, setRnaNussinovStructure] = useState('');
-  const [rnaZukerStructure, setRnaZukerStructure] = useState('');
 
   // ----- this the TEST dialog list item selected value -------
   // eslint-disable-next-line no-unused-vars
   const [selectedItem, setSelectedItem] = useState('');  
 
+  // when an item is selected from the "Test RNAs" dialog
+  const handleItemSelected = (item) => {
+    setSelectedItem(item);
+    onChangeRnaName(item.Name);
+    onChangeRnaSequence(item.RNASequence);
+  };
+  
+  // getting the RNA Name
+  const [rnaName, setRnaName] = useState('');
+  const onChangeRnaName = (value) => {
+    setRnaName(value);
+  }
 
-  // ----- this UseEffect used to get the NUSSINOV structure from the backend node js REST API -------
-  // it has been put under useEffect since this API might take time
-  const [dataNussinov, setDataNussinov] = useState('');
-  const [errorNussinov, setErrorNussinov] = useState('');
-  const [loadingNussinov, setLoadingNussinov] = useState(false);
+  // getting the RNA Sequence
+  const [rnaSequence, setRnaSequence] = useState('');
+  const onChangeRnaSequence = (value) => {
+    setRnaSequence(value);
+  }
+
+  // executing loading of secondary structures
+  const [loadNussinovStructure, setLoadNussinovStructure] = useState(false); // flag to set for loading nussinov
+  const [loadZukerStructure, setLoadZukerStructure] = useState(false); // flag set for loading zuker
+  const [loadBioInfoData, setLoadBioInfoData] = useState(false); // flag set for loading the bioinfo data
+
+  const [rnaNussinovStructure, setRnaNussinovStructure] = useState(''); // predicted stucture value for nussinov
+  const [rnaZukerStructure, setRnaZukerStructure] = useState(''); // predicted structure value for suker
+  const [bioInfoData, setBioInfoData] = useState({}); // predicted structure value for suker
+
+  // upon clicking of the button the loading flags are set.
+  // as soon as these values are set the individual useEffects are executed
+  const onPredictedStructureClick =(value) => {
+    setLoadNussinovStructure(true); 
+    setLoadZukerStructure(true);
+    setLoadBioInfoData(true);
+  }
 
   // ----- for loading the Nussinov predicted structure ------
   useEffect(() => {
+      const fetchData = async () => {
+          if (loadNussinovStructure) {
+              // finally make sure the predicted structure has been set
+              setRnaNussinovStructure(await nussinovPredictedStructure(rnaSequence));
+          }
+          // make sure finally the loading flag is reset to false
+          setLoadNussinovStructure(false);
+      };
+      
+      fetchData();
 
-    let responseData = "";
-    
-    const fetchData = async () => {
+  }, [loadNussinovStructure, rnaSequence]);
 
-      try {
-
-        if (loadingNussinov) {
-          const apiUrl = "http://localhost:4000/users/dashboard/nussinov"
-
-          const data = { "rna_sequence": rnaString }
-
-          responseData = await callApi(apiUrl, 'POST', data, headers);
-          const st = responseData.data.nussinov;
-          setDataNussinov(setRnaNussinovStructure(st));
-        }
-
-      } catch (error) {
-        setErrorNussinov(error);
-      } finally {
-        setLoadingNussinov(false);
-      }
-    };
-
-    fetchData();
-  }, [loadingNussinov, rnaString]);
-
-
-  // ----- this UseEffect used to get the NUSSINOV structure from the backend node js REST API -------
-  // it has been put under useEffect since this API might take time
-  const [dataZuker, setDataZuker] = useState('');
-  const [errorZuker, setErrorZuker] = useState('');
-  const [loadingZuker, setLoadingZuker] = useState(false);
-  
+  // ----- for loading the Zuker predicted structure ------
   useEffect(() => {
-
-    let responseData = "";
-    
     const fetchData = async () => {
-
-      try {
-
-        if (loadingZuker) {
-          const apiUrl = "http://localhost:4000/users/dashboard/zuker"
-
-          const data = { "rna_sequence": rnaString }
-
-          responseData = await callApi(apiUrl, 'POST', data, headers);
-          const st = responseData.data.zuker;
-          setDataZuker(setRnaZukerStructure(st));
+        if (loadZukerStructure) {
+            // finally make sure the predicted structure has been set
+            setRnaZukerStructure(await zukerPredictedStructure(rnaSequence));
         }
-
-      } catch (error) {
-        setErrorZuker(error);
-      } finally {
-        setLoadingZuker(false);
-      }
+        setLoadZukerStructure(false);
     };
-
+    
     fetchData();
-  }, [loadingZuker, rnaString]);
 
-  const getPredictedStructure = (value) => {
-    setLoadingNussinov(true);
-    setLoadingZuker(true);
-  }
+  }, [loadZukerStructure, rnaSequence]);
 
-  const handleInputChangeSequence = (value) => {
-    const newValue = value;
-    const validChars = /^[UGAC]*$/;
 
-    if (validChars.test(newValue)) {
-      setRnaString(newValue);
+  // ----- for loading the BioInfo data ------
+  useEffect(() => {
+    const fetchData = async () => {
+        if (loadBioInfoData) {
+            // finally make sure the predicted structure has been set
+            setBioInfoData(await getBioInfoData(rnaSequence))
+        }
+        setLoadBioInfoData(false);
+    };
+    
+    fetchData();
 
-      setRnaNussinovStructure('');
-      // setRnaNussinovStructure(dataNussinov);
-      //setRnaZukerStructure(getPredictedStructureZuker(value));
-
-      setRnaStringErrorMessage('');
-    } else {
-      setRnaStringErrorMessage('Only U G A C are valid entries allowed.');
-    }
-  };
-
-  const handleInputChangeRNAName = (value) => {
-    console.log(value);
-      setRnaStringName(value);
-  };
-
-  const handleItemSelected = (item) => {
-    setSelectedItem(item);
-    handleInputChangeSequence(item.RNASequence);
-    handleInputChangeRNAName(item.Name);
-  };
-  
+  }, [loadBioInfoData, rnaSequence]);  
 
   return (
     <Box sx={{ flexGrow: 1, paddingTop: '80px' }}>
         <CssBaseline />
           <Container maxWidth="xl" sx={{ mt: 1, mb: 1, left:0, width: '100%', }}>
+            
             <FloatingActionButtons onItemSelected={handleItemSelected}/>
+
             <Grid container spacing={2}>
               {/* 
                 This section is to capture the RNA Name and Sequence.
                 Based on the details captured it will render the RNA sequence as a codon visualisation on the right.
               */}
                 <Grid item xs={4}>
-                  <Paper
-                    sx={{
-                      p: 2,
-                      display: 'flex',
-                      flexDirection: 'column',
-                    }}
-                  >
-                      <Title>RNA Sequence</Title>
-
-                      {/* Captures the RNA Name*/}
-                      <TextField
-                      margin='normal'
-                      required
-                      fullWidth
-                      id="RNAName"
-                      label="Name"
-                      name="rnaName"
-                      autoFocus
-                      variant="outlined"
-                      value={rnaStringName}
-                      onChange={(e) => handleInputChangeRNAName(e.target.value)}
-                      inputProps={{ maxLength: 100 }}
-                      error={!rnaStringName} // Display error indicator if empty
-                      // helperText={!rnaStringName && 'This field is required'} // Add helper text                
-                      />
-
-                      {/* Captures the RNA Sequence*/}
-                      <TextField
-                      margin='normal'
-                      required
-                      fullWidth
-                      id="RNASequence"
-                      label="Sequence (UGAC)"
-                      name="rnaSequence"
-                      autoFocus
-                      variant="outlined"
-                      value={rnaString}
-                      onChange={(e) => handleInputChangeSequence(e.target.value)}
-                      error={rnaStringErrorMessage.length > 0 ? true : false}
-                      inputProps={{ maxLength: 1000 }}
-                      multiline
-                      rows={3}
-                      />
-
-                      <Button onClick={(e)=>getPredictedStructure(e)}>Get Predicted Structure</Button>
-                      
-                  </Paper>
+                  <RNAInputs 
+                    rnaNameValue={rnaName}
+                    rnaSequenceValue={rnaSequence}
+                    onChangeRnaName={onChangeRnaName} 
+                    onChangeRnaSequence={onChangeRnaSequence} 
+                    onPredictedStructureClick={onPredictedStructureClick} 
+                  />
                 </Grid>
                 
                 {/* 
                   This draws the RNA sequence as a chart.
                 */}
-                <Grid item xs={8}>
-                  <Paper
-                    sx={{
-                      p: 2,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      height: 270,
-                    }}
-                  >
-                    <Title>Sequence Chart</Title>
-                    <SeqChart rnaStringName={rnaStringName} rnaString={rnaString} />
-                  </Paper>
+                <Grid item xs={7}>
+                    <SeqChart rnaStringName={rnaName} rnaString={rnaSequence} />
                 </Grid>
 
                 {/* 
@@ -224,17 +136,15 @@ export default function Dashboard() {
                   <ForContainer
                     nussinovStructure={rnaNussinovStructure}
                     zukerStructure={rnaZukerStructure}
-                    nussinovLoading={loadingNussinov}
-                    zukerLoading={loadingZuker}
+                    nussinovLoading={loadNussinovStructure}
+                    zukerLoading={loadZukerStructure}
                   />                    
                 </Grid>
 
                 
                 {/* Amino Acids */}
-                <Grid item xs={6}>
-                  <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                    <AminoAcids rnaString={rnaString} />
-                  </Paper>
+                <Grid item xs={12}>
+                    <AminoAcids bioInfoDataLoading={loadBioInfoData} bioInfoData={bioInfoData}/>
                 </Grid>
               </Grid>
           </Container>

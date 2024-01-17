@@ -1,2 +1,0 @@
-import { callApi } from "./api";
-
