@@ -75,6 +75,14 @@ def bio_info_calculations():
     # get the codon bias related info
     CBA = CodonBiasAnalyzer()
     cba_values = CBA.analyze_codon_bias(rna_sequence)
+    bio_info_details.append({
+        "name": "Effective Number of Codons (ENC)",
+        "data": cba_values["ENC"]
+    })
+    bio_info_details.append({
+        "name": "Codon Adaptation Index (CAI)",
+        "data": cba_values["CAI"]
+    })
 
     # get the translated codon oputput
     TC = TranslateCodons()

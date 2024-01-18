@@ -22,14 +22,4 @@ async function callApi(url, method = 'GET', data = {}, headers = {}) {
   }
 }
 
-
-// api.js
-const login = async (username, password) => {
-  // API logic for login
-};
-
-const logout = async () => {
-  // API logic for logout
-};
-
 export { callApi };

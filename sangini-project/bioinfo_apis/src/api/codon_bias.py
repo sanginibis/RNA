@@ -111,10 +111,17 @@ class CodonBiasAnalyzer:
         Returns:
             float: The ENC value.
         """
-
-        f2 = sum(count**2 for count in codon_counts.values())
-        n = sum(codon_counts.values())
-        enc = 2 + 9 * f2 / (n * (n - 1))
+        enc = 0.0
+        
+        try:
+            f2 = sum(count**2 for count in codon_counts.values())
+            n = sum(codon_counts.values())
+            enc = 2 + 9 * f2 / (n * (n - 1))
+        except ZeroDivisionError:
+            enc = 0.0
+        except:
+            enc = 0.0
+            
         return enc
 
 
@@ -122,6 +129,5 @@ class CodonBiasAnalyzer:
 if __name__ == '__main__':
 
     CBA = CodonBiasAnalyzer()
-
     for entry in rna_test_data:
         print(CBA.analyze_codon_bias(entry["RNASequence"]))

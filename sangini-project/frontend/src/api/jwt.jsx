@@ -1,14 +1,14 @@
 // jwt.js
 const setAuthToken = (token) => {
-  // Logic to set JWT token in headers
+  localStorage.setItem("authorization", token);
 };
 
 const getAuthToken = () => {
-  // Logic to retrieve JWT token
+  return localStorage.getItem("authorization");
 };
 
 const removeAuthToken = () => {
-  // Logic to remove JWT token
+  localStorage.removeItem("authorization");
 };
 
 export { setAuthToken, getAuthToken, removeAuthToken };

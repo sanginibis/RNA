@@ -1,7 +1,6 @@
 const loggedOutPages = [
   { "Name": "Home", "NavigateTo": "/" },
-  { "Name": "Login", "NavigateTo": "/login" },
-  { "Name": "Signup", "NavigateTo": "/signup" },
+  { "Name": "Login or Signup", "NavigateTo": "/login" },
 ];
 
 const loggedInPages = [

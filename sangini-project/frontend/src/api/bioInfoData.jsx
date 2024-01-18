@@ -1,7 +1,9 @@
+import { getAuthToken } from "./jwt";
 import { callApi } from "./restAPICaller";
 
 const headers = {
-  'Content-Type': 'application/json'
+  'Content-Type': 'application/json',
+  'authorization': getAuthToken()
 };
 
 // ----- for getting the bioinfo related data for the RNA sequence ------

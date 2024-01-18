@@ -1,7 +1,7 @@
 const bioinfos = require('../services/bioinfo.services');
 
 exports.bioinfo = (req, res, next) => {
-    bioinfos.bioinfo(req.body, (error, result) => {
+    bioinfos.bioinfo(req, (error, result) => {
         if (error) {
             res.status(201).send(error)
             return next();
@@ -15,7 +15,7 @@ exports.bioinfo = (req, res, next) => {
 }
 
 exports.nussinov = (req, res, next) => {
-    bioinfos.nussinov(req.body, (error, result) => {
+    bioinfos.nussinov(req, (error, result) => {
         if (error) {
             res.status(201).send(error)
             return next();
@@ -29,7 +29,7 @@ exports.nussinov = (req, res, next) => {
 }
 
 exports.zuker = (req, res, next) => {
-    bioinfos.zuker(req.body, (error, result) => {
+    bioinfos.zuker(req, (error, result) => {
         if (error) {
             res.status(201).send(error)
             return next();

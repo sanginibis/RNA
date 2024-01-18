@@ -25,7 +25,7 @@ console.log(dateNow + ' ' + dateNowTime);
 app.get("/test", (req, res) => res.json(dateLocale + ' ' + dateNowTime + ". Yes, server is running"));
 
 // adding the token verification for the calls as a middleware so that all requests are inspected
-// app.use(auth.authenticateToken);
+app.use(auth.authenticateToken);
 
 
 // adding the routes and errors to the middleware

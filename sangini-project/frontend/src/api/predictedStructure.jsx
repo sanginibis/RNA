@@ -1,7 +1,9 @@
+import { getAuthToken } from "./jwt";
 import { callApi } from "./restAPICaller";
 
 const headers = {
-  'Content-Type': 'application/json'
+  'Content-Type': 'application/json',
+  'authorization': getAuthToken()
 };
 
 // ----- for getting the Nussinov predicted structure ------
@@ -29,7 +31,6 @@ const nussinovPredictedStructure = async (rnaSequence) => {
 const zukerPredictedStructure = async (rnaSequence) => {
 
   let predictedStructure = "";
-
   try {
     if (rnaSequence) {
       const apiUrl = "http://localhost:4000/users/dashboard/zuker"

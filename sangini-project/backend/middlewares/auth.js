@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const urlConfig = require('../config/url.config');
+const JWT_SECRECT = "Obelix2024@";
 
 function authenticateToken(req, res, next) {
 
@@ -13,27 +14,45 @@ function authenticateToken(req, res, next) {
     
     const authHeader = req.headers["authorization"];
     const token = authHeader;// && authHeader.split(' ')[1];
-    console.log(authHeader);
+    
     if (token == null) return res.status(401).send();
 
-    jwt.verify(token, "secret-key", (err, user) => {
+    jwt.verify(token, JWT_SECRECT, {algorithm: 'HS512'}, (err, user) => {
         if (err) return res.status(401).send(err);
         req.user = user;
         next();
     });
 }
 
-function generateAccessToken(params) {
-    return jwt.sign(
-        { params },
-        "secret-key",
-        { expiresIn: "1h" }
-    );
+const generateAccessToken = async(user_id, username) => {
+
+    let obj;
+
+    obj = {
+        id: user_id,
+        username: username
+    }
+
+    const token = jwt.sign(obj, JWT_SECRECT, {algorithm: 'HS512'}, {expiresIn: '7d'});
+
+    return token;
+
+}
+
+const getDataFromToken = async(token) => {
+    let obj;
+    
+    if (token!==undefined){
+        obj = jwt.verify(token, JWT_SECRECT, {algorithm: 'HS512'});
+    }
+
+    return obj;
 }
 
 module.exports = {
     authenticateToken,
-    generateAccessToken
+    generateAccessToken,
+    getDataFromToken
 }
 
 

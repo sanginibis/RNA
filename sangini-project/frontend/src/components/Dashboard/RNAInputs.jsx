@@ -8,9 +8,11 @@ function RNAInputs({rnaNameValue, onChangeRnaName, rnaSequenceValue, onChangeRna
     
     const handleInputChangeRNAName = (value) => {
         onChangeRnaName(value);
+        setRnaNameErrorMessage("");
     };
 
     // ----- RNA SEQUENCE STRING ENTRY ------
+    const [rnaNameErrorMessage, setRnaNameErrorMessage] = useState('');
     const [rnaSequenceErrorMessage, setRnaSequenceErrorMessage] = useState('');
 
     const handleInputChangeRNASequence = (value) => {
@@ -18,7 +20,6 @@ function RNAInputs({rnaNameValue, onChangeRnaName, rnaSequenceValue, onChangeRna
         const validChars = /^[UGAC]*$/;
 
         if (validChars.test(newValue)) {
-            // setRnaSequence(newValue);
             onChangeRnaSequence(newValue);
             setRnaSequenceErrorMessage('')
         } else {
@@ -28,9 +29,21 @@ function RNAInputs({rnaNameValue, onChangeRnaName, rnaSequenceValue, onChangeRna
 
     // ---- when the button is clicked it triggers the useEffect to fetch relevant data
     const getPredictedStructure = (value) => {
-        onPredictedStructureClick(rnaSequenceValue)
+        //--RNA Name is mandatory
+        if (rnaNameValue.length>0 && rnaSequenceValue.length>0){
+            onPredictedStructureClick(rnaSequenceValue)            
+        } else {
+            setRnaNameErrorMessage('The input ins required.')
+            setRnaSequenceErrorMessage('Valid inputs allowed are UGAC only.')
+        }
     }
     
+    // --- reset the inputs
+    const resetInputs = (value) => {
+        handleInputChangeRNAName("")
+        handleInputChangeRNASequence("");
+        onPredictedStructureClick("");
+    }
     
   return (
 
@@ -56,7 +69,7 @@ function RNAInputs({rnaNameValue, onChangeRnaName, rnaSequenceValue, onChangeRna
                     value={rnaNameValue}
                     onChange={(e) => handleInputChangeRNAName(e.target.value)}
                     inputProps={{ maxLength: 100 }}
-                    error={!rnaNameValue} // Display error indicator if empty
+                    error={rnaNameErrorMessage.length > 0 ? true : false} // Display error indicator if empty
                     // helperText={!rnaStringName && 'This field is required'} // Add helper text                
                     />
 
@@ -78,16 +91,27 @@ function RNAInputs({rnaNameValue, onChangeRnaName, rnaSequenceValue, onChangeRna
                     rows={3}
                     />
 
-                    <Button 
-                        fullWidth
-                        variant="contained"
-
-                        id="PredictStructure"
-                        name="PredictStructure"
-                        onClick={(e)=>getPredictedStructure(e)}
-                    >
-                        Get Predicted Structure
-                    </Button>
+                    <div style={{display:"flex", flexDirection:"row", marginTop:"5px"}}>
+                        <Button 
+                            fullWidth
+                            variant="contained"
+                            id="PredictStructure"
+                            name="PredictStructure"
+                            onClick={(e)=>getPredictedStructure(e)}
+                        >
+                            Get Predicted Structure
+                        </Button>
+                        <Button 
+                            fullWidth
+                            variant="contained"
+                            style={{marginLeft: "10px"}}
+                            id="resetInputs"
+                            name="resetInputs"
+                            onClick={(e)=>resetInputs(e)}
+                        >
+                            Reset
+                        </Button>
+                    </div>
                       
                 </Paper>
 

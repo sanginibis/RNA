@@ -5,6 +5,7 @@ const userService = require("../services/users.services");
 
 // This is the controller that is responsible to handle the control by sending the executions to the service
 exports.register = (req, res, next) => {
+
     const { password } = req.body;
     const salt = bcrypt.genSaltSync(10);
 
@@ -18,7 +19,8 @@ exports.register = (req, res, next) => {
 
         return res.status(200).send({
             message: "success",
-            data: result
+            data: result,
+            err_no: 0
         });
     });
 }
