@@ -1,9 +1,23 @@
 const axios = require('axios');
 const url = require('../config/url.config');
+const bioDB = require('./bioinfo.db.services');
+const jwtToken = require('../middlewares/auth');
 
 const headers = {
     'Content-Type': 'application/json'
 };
+
+// function to get the required data for db operations
+async function dbDATA(request){
+    let dataObj;
+    const data = await jwtToken.getDataFromToken(request.headers["authorization"]);
+    dataObj = {
+        user_id : data.id,
+        rna_sequence : request.body.rna_sequence,
+        urs_id : await bioDB.get_users_rna_sequences(data.id,request,body.rna_sequence)
+    };
+    return dataObj;
+}
 
 // function that calls the bioinfo flask rest apis
 function bioinfo_call_apis(apiUrl, method, data = null, headers = {}) {
@@ -35,14 +49,6 @@ const bioinfo = async function (req, callback) {
     } catch (error) {
         return callback({ message: error, err_code: "BIOINFO_API_CALL_FAILED", err_no: "201" });
     }
-    
-    console.log(responseData.bio_info_details[0].name);
-    for (let i = 0; i < responseData.bio_info_details.length; i++) {
-        console.log(responseData.bio_info_details[i].data);
-        console.log(responseData.bio_info_details[i].name);
-    }
-      
-
 
     return callback(null, responseData);
 }

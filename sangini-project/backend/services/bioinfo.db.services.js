@@ -28,6 +28,11 @@ const get_users_rna_sequences = async function (user_id, rna_sequence) {
 const users_rna_sequences = async function (user_id, rna_sequence) {
     try {
 
+        const ursData = get_users_rna_sequences(user_id, rna_sequence); // get the rna sequence id
+        const ursId = ursData[0].id;
+
+        if (ursId>0) return true;
+
         // create the sql statement
         const sqlURS = sql.sqlCreateUserRNASequence;
 
@@ -38,10 +43,11 @@ const users_rna_sequences = async function (user_id, rna_sequence) {
 
         connection.release();
 
-        return data;
+        return true;
 
     } catch (error) {
-        return null;
+        console.log(error);
+        return false;
     }    
 }
 
@@ -53,168 +59,118 @@ const urs_predicted_structure = async function (user_id, rna_sequence, predicted
         let sqlURS = sql.sqlCreateRNASequenceNussinov;
         if (!isNussinov) sqlURS = sql.sqlCreateRNASequenceZuker;
 
-        const ursData = get_users_rna_sequences(user_id, rna_sequence);
+        let sqlURSDelete = sql.sqlDeleteRNASequenceNussinov;
+        if (!isNussinov) sqlURSDelete = sql.sqlDeleteRNASequenceZuker;
+
+        const ursData = get_users_rna_sequences(user_id, rna_sequence); // get the rna sequence id
         const ursId = ursData[0].id;
 
-        // get the connection from the pool
-        const connection = await pool.getConnection();
-        const data = await connection
-            .query(sqlURS, [ursId, predicted_structure]);
+        if (ursId>0) {
+            // get the connection from the pool
+            const connection = await pool.getConnection();
 
-        connection.release();
+            // delete old record
+            const del = await connection
+                .query(sqlURSDelete, [ursId]);
 
-        return data;
+            const data = await connection
+                .query(sqlURS, [ursId, predicted_structure]);
+
+            connection.release();
+
+            return true;
+        } else return false;
 
     } catch (error) {
-        return null;
+        console.log(error);
+        return false;
     }    
 }
 
-
-
-// get the bioinfo
-const bioinfo = async function (data, response) {
-    
-    const userid = data.user_id;
-    const username = data.username;
-
-    // update the database with the data
+// create the data into urs_sequences_bio_info to hold the bio info details
+const urs_sequences_bio_info = async function (user_id, rna_sequence, bioinfo_data) {
     try {
 
         // create the sql statement
-        const sqlUser = sql.sqlGetUser;
+        const sqlURS = sql.sqlCreateRNASequenceBioInfo;
+        const sqlURSDelete =  sql.sqlDeleteRNASequenceBioInfo;
 
-        // get the connection from the pool
-        const connection = await pool.getConnection();
-        const data = await connection
-            .query(sqlUser, [username]);
+        const ursData = get_users_rna_sequences(user_id, rna_sequence); // get the rna sequence id
+        const ursId = ursData[0].id;
 
+        if (ursId>0){
+            // get the connection from the pool
+            const connection = await pool.getConnection();
 
-        if (data[0].length > 0) {
-            const dbPassword = data[0][0].password;
+            // delete old record
+            const del = await connection
+                .query(sqlURSDelete, [ursId]);
 
-            //match whether the hashed passwords matches
-            if (await matchPassword(dbPassword, password) === false) {
-                bNext = false;
-            }
-            
-        } else {
-            bNext = false;
-        }
+            // since the bio info data is an array so loop it and insert each record
+            for (let i = 0; i < bioinfo_data.bio_info_details.length; i++) {
+                const name = bioinfo_data.bio_info_details[i].name;
+                const data = bioinfo_data.bio_info_details[i].data;
 
-        if (!bNext) {
-            // audit it
-            const dataAudit = await connection
-            .query(sqlAudit, [username, 'FAILED', 'Login - Username or Password provided is not valid.', helper.getCurrentDateTime()]);
+                const dataCreated = await connection
+                .query(sqlURS, [ursId, name, data]);            
+            }        
             connection.release();
 
-            return callback({ message: "Username or Password provided is not valid", err_code: "INVALID_CREDENTIALS", err_no: "101" });
-        } 
-
-        // gerenate the access token
-        const user_id = data[0][0].id;
-        const token = await auth.generateAccessToken(user_id, username);
-
-        // audit it
-        const dataAudit = await connection
-        .query(sqlAudit, [username, 'SUCCESS', 'Login', helper.getCurrentDateTime()]);
-        connection.release();
-
-        return callback(null, { id: user_id, username: data[0][0].username, token: token });
+            return true;
+        } else return false;
 
     } catch (error) {
-        return callback({ error }, null);
+        console.log(error);
+        return false;
     }    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    const rnaSequence = req.body;
-    let responseData = "";
-
-    try {
-        responseData = await bioinfo_call_apis(
-            apiUrl,
-            'POST',
-            rnaSequence,
-            headers
-        );
-    } catch (error) {
-        return callback({ message: error, err_code: "BIOINFO_API_CALL_FAILED", err_no: "201" });
-    }
-    
-    console.log(responseData.bio_info_details[0].name);
-    for (let i = 0; i < responseData.bio_info_details.length; i++) {
-        console.log(responseData.bio_info_details[i].data);
-        console.log(responseData.bio_info_details[i].name);
-    }
-      
-
-
-    return callback(null, responseData);
 }
 
-// get the nussinov structure
-const nussinov = async function (req, callback) {
-
-    const apiUrl = url.bioinfo.base + url.bioinfo.nussinov
-    const rnaSequence = req.body;
-    let responseData = "";
-
+// create the data into urs_sequences_amino_acids to hold the translated data
+const urs_sequences_amino_acids = async function (user_id, rna_sequence, amino_acids_data) {
     try {
-        responseData = await bioinfo_call_apis(
-            apiUrl,
-            'POST',
-            rnaSequence,
-            headers
-        );
+
+        // create the sql statement
+        const sqlURS = sql.sqlCreateRNASequenceAminoAcids;
+        const sqlURSDelete =  sql.sqlDeleteRNASequenceAminoAcids;
+
+
+        const ursData = get_users_rna_sequences(user_id, rna_sequence); // get the rna sequence id
+        const ursId = ursData[0].id;
+
+        if (ursId>0) {
+            // get the connection from the pool
+            const connection = await pool.getConnection();
+
+            // delete old record
+            const del = await connection
+                .query(sqlURSDelete, [ursId]);            
+            
+            // since the translated_codons is an array so loop it and insert each record
+            for (let i = 0; i < amino_acids_data.translated_codons.length; i++) {
+                const amino_acid_code = amino_acids_data.translated_codons[i].code.toString();
+                const amino_acid_name = amino_acids_data.translated_codons[i].name.toString();
+                const amino_acid_codons = amino_acids_data.translated_codons[i].count.codon();
+                const amino_acid_count = amino_acids_data.translated_codons[i].count.toString();
+                const amino_acid_positions = amino_acids_data.translated_codons[i].positions.toString();
+
+                const dataCreated = await connection
+                .query(sqlURS, [ursId, amino_acid_code, amino_acid_name, amino_acid_codons, amino_acid_count, amino_acid_positions]);            
+            }        
+            connection.release();
+
+            return true;
+        } else return false;
+
     } catch (error) {
-        return callback({ message: error, err_code: "NUSSINOV_API_CALL_FAILED", err_no: "202" });
-    }
-
-    return callback(null, responseData);
-}
-
-// get the zuker structure
-const zuker = async function (req, callback) {
-
-    const apiUrl = url.bioinfo.base + url.bioinfo.zuker;
-    const rnaSequence = req.body;
-    let responseData = "";
-
-    try {
-        responseData = await bioinfo_call_apis(
-            apiUrl,
-            'POST',
-            rnaSequence,
-            headers
-        );
-    } catch (error) {
-        return callback({ message: error, err_code: "ZUKER_API_CALL_FAILED", err_no: "203" });
-    }
-
-    return callback(null, responseData);
+        console.log(error);
+        return false;
+    }    
 }
 
 module.exports = {
-    bioinfo,
-    nussinov,
-    zuker
+    get_users_rna_sequences,
+    users_rna_sequences,
+    urs_predicted_structure,
+    urs_sequences_bio_info,
+    urs_sequences_amino_acids
 }

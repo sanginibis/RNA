@@ -13,6 +13,13 @@ const sqlGetUserProfile = "SELECT users.id, users.username, users_profile.firstn
 const sqlGetUserAllRNASequences = "SELECT users.id, users_rna_sequences.rna_sequence, users_rna_sequences.nussinov_predicted_structure, users_rna_sequences.zuker_predicted_structure FROM users, users_rna_sequences WHERE users.id = users_rna_sequences.users_id AND users.id = ?";
 const sqlGetUsersRNASequence = "SELECT id, users_id, rna_sequence FROM users_rna_sequences WHERE users_id = ? AND rna_sequence = ?";
 
+const sqlDeleteRNASequence = "DELETE FROM users_rna_sequences WHERE id = ?";
+const sqlDeleteRNASequenceNussinov = "DELETE FROM urs_nussinov_structure WHERE urs_id = ?";
+const sqlDeleteRNASequenceZuker = "DELETE FROM urs_zuker_structure WHERE urs_id = ?";
+const sqlDeleteRNASequenceAminoAcids = "DELETE FROM urs_sequences_amino_acids WHERE urs_id = ?";
+const sqlDeleteRNASequenceBioInfo = "DELETE FROM urs_sequences_bio_info WHERE urs_id = ?";
+
+
 module.exports={
     sqlCreateUser,
     sqlCreateUserProfile,
@@ -25,7 +32,12 @@ module.exports={
     sqlGetUser,
     sqlGetUserProfile,
     sqlGetUserAllRNASequences,
-    sqlGetUsersRNASequence
+    sqlGetUsersRNASequence,
+    sqlDeleteRNASequence,
+    sqlDeleteRNASequenceNussinov,
+    sqlDeleteRNASequenceZuker,
+    sqlDeleteRNASequenceAminoAcids,
+    sqlDeleteRNASequenceBioInfo
 }
 
 
