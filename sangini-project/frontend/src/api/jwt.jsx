@@ -7,8 +7,12 @@ const getAuthToken = () => {
   return localStorage.getItem("authorization");
 };
 
+const getAuthTokenAPI = async() => {
+  return localStorage.getItem("authorization");
+};
+
 const removeAuthToken = () => {
   localStorage.removeItem("authorization");
 };
 
-export { setAuthToken, getAuthToken, removeAuthToken };
+export { setAuthToken, getAuthToken, removeAuthToken, getAuthTokenAPI };

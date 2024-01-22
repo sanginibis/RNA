@@ -50,6 +50,7 @@ const bioinfo = async function (req, callback) {
         return callback({ message: error, err_code: "BIOINFO_API_CALL_FAILED", err_no: "201" });
     }
 
+    // before sending the response to 
     return callback(null, responseData);
 }
 

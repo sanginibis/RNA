@@ -1,10 +1,4 @@
-import { getAuthToken } from "./jwt";
 import { callApi } from "./restAPICaller";
-
-const headers = {
-  'Content-Type': 'application/json',
-  'authorization': getAuthToken()
-};
 
 // ----- for getting the bioinfo related data for the RNA sequence ------
 const getBioInfoData = async (rnaSequence) => {
@@ -13,9 +7,9 @@ const getBioInfoData = async (rnaSequence) => {
 
   try {
     if (rnaSequence) {
-      const apiUrl = "http://localhost:4000/users/dashboard/bioinfo"
-      const data = { "rna_sequence": rnaSequence }
-      const responseData = await callApi(apiUrl, 'POST', data, headers);
+      const apiUrl = "http://localhost:4000/users/dashboard/bioinfo";
+      const data = { "rna_sequence": rnaSequence };
+      const responseData = await callApi(apiUrl, 'POST', data);
       bioinfoData = responseData.data;
     }
   } catch (error) {

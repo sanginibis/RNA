@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -14,7 +16,21 @@ import Container from '@mui/material/Container';
 const cards = [1, 2, 3];
 
 
-export default function Home() {
+export default function Home({isLoggedin}) {
+  const navigate = useNavigate();
+
+  const loginClick = (e) => {
+    return (navigate("/login", { replace: true }));
+  }
+
+  const signupClick = (e) => {
+    return (navigate("/signup", { replace: true }));
+  }
+
+  const dashboardClick = (e) => {
+    return (navigate("/dashboard", { replace: true }));
+  }
+
   return (
     <>
       <CssBaseline />
@@ -65,8 +81,15 @@ export default function Home() {
               spacing={5}
               justifyContent="center"
             >
-              <Button variant="contained">Login</Button>
-              <Button variant="outlined">Signup</Button>
+              {!isLoggedin
+              ?
+              <>
+              <Button variant="contained" onClick={(e)=>loginClick(e)}>Login</Button>
+              <Button variant="outlined" onClick={(e)=>signupClick(e)}>Signup</Button>
+              </>
+              :
+              <Button variant="contained" onClick={(e)=>dashboardClick(e)}>Dashboard</Button>
+              }
             </Stack>
           </Container>
         </Box>

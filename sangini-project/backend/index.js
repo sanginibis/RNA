@@ -17,6 +17,15 @@ app.use(express.json()); // making sure that the all incoming requests are json
 
 app.use(cors());
 
+function enableCORSHeaders(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, abc');
+    next();
+};
+app.use(enableCORSHeaders);
+
+
 // this is to test whether the server is running
 const dateNow = new Date(Date.now());
 const dateLocale = new Date(dateNow).toLocaleDateString('en-gb');

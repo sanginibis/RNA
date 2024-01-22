@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -15,7 +15,7 @@ import { getBioInfoData } from '../../api/bioInfoData';
 import RNAInputs from './RNAInputs';
 
 export default function Dashboard() {
-
+  
   // ----- this the TEST dialog list item selected value -------
   // eslint-disable-next-line no-unused-vars
   const [selectedItem, setSelectedItem] = useState('');  
@@ -103,6 +103,7 @@ export default function Dashboard() {
   return (
     <Box sx={{ flexGrow: 1, paddingTop: '80px' }}>
         <CssBaseline />
+          
           <Container maxWidth="xl" sx={{ mt: 1, mb: 1, left:0, width: '100%', }}>
             
             <FloatingActionButtons onItemSelected={handleItemSelected}/>
@@ -149,5 +150,5 @@ export default function Dashboard() {
               </Grid>
           </Container>
       </Box>
-  );
+  )
 }

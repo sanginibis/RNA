@@ -1,10 +1,5 @@
-import { getAuthToken } from "./jwt";
 import { callApi } from "./restAPICaller";
 
-const headers = {
-  'Content-Type': 'application/json',
-  'authorization': getAuthToken()
-};
 
 // ----- for getting the Nussinov predicted structure ------
 const nussinovPredictedStructure = async (rnaSequence) => {
@@ -13,9 +8,9 @@ const nussinovPredictedStructure = async (rnaSequence) => {
 
   try {
     if (rnaSequence) {
-      const apiUrl = "http://localhost:4000/users/dashboard/nussinov"
-      const data = { "rna_sequence": rnaSequence }
-      const responseData = await callApi(apiUrl, 'POST', data, headers);
+      const apiUrl = "http://127.0.0.1:4000/users/dashboard/nussinov";
+      const data = { "rna_sequence": rnaSequence };
+      const responseData = await callApi(apiUrl, 'POST', data);
       predictedStructure = responseData.data.nussinov;
     }
   } catch (error) {
@@ -33,9 +28,9 @@ const zukerPredictedStructure = async (rnaSequence) => {
   let predictedStructure = "";
   try {
     if (rnaSequence) {
-      const apiUrl = "http://localhost:4000/users/dashboard/zuker"
-      const data = { "rna_sequence": rnaSequence }
-      const responseData = await callApi(apiUrl, 'POST', data, headers);
+      const apiUrl = "http://localhost:4000/users/dashboard/zuker";
+      const data = { "rna_sequence": rnaSequence };
+      const responseData = await callApi(apiUrl, 'POST', data);
       predictedStructure = responseData.data.zuker;
     }
   } catch (error) {

@@ -21,8 +21,12 @@ function CustomAppBar({isLoggedIn, handleLogout}) {
   const navigate = useNavigate();
 
   // menu click events
-  const signupOrLoginClick = (e) => {
+  const loginClick = (e) => {
     return (navigate("/login", { replace: true }));
+  }
+
+  const signupClick = (e) => {
+    return (navigate("/signup", { replace: true }));
   }
 
   const dashboardClick = (e) => {
@@ -78,9 +82,15 @@ function CustomAppBar({isLoggedIn, handleLogout}) {
       <>
         <MenuItem
           key='login'
-          onClick={(e)=>signupOrLoginClick(e)}
+          onClick={(e)=>loginClick(e)}
         >
-          <Typography textAlign="center" sx={{color: "#ffffff"}} >Login or Signup</Typography>
+          <Typography textAlign="center" sx={{color: "#ffffff"}} >Login</Typography>
+        </MenuItem>
+        <MenuItem
+          key='login'
+          onClick={(e)=>signupClick(e)}
+        >
+          <Typography textAlign="center" sx={{color: "#ffffff"}} >Sign up</Typography>
         </MenuItem>
         <MenuItem
           key='credits'

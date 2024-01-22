@@ -16,12 +16,14 @@ const get_users_rna_sequences = async function (user_id, rna_sequence) {
 
         connection.release();
 
-        return data;
+        return data[0].id;
 
     } catch (error) {
         return null;
     }    
 }
+
+
 
 
 // create the data into users_rna_sequences (urs)

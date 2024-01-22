@@ -8,13 +8,17 @@ import Dashboard from './components/Dashboard/Dashboard';
 
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './components/Themes/RNAThemes';
-import LoginOrSignUp from './components/LoginOrSignup/LoginOrSignup';
 import { getAuthToken, removeAuthToken, setAuthToken } from './api/jwt';
 import { useNavigate } from 'react-router-dom';
+import Login from './components/Login/Login';
+import Signup from './components/Signup/Signup';
+import { CssBaseline } from '@mui/material';
+
+import Footer from './components/Footer/Footer';
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(!!getAuthToken());
-
+    console.log(isLoggedIn);
     const navigate = useNavigate();
     
     const handleLogout = () => {
@@ -24,7 +28,6 @@ const App = () => {
     }
     
     const handleSignupOrLogin = (token) => {
-        console.log('token ', token)
         setAuthToken(token);
         setIsLoggedIn(true);
         return (navigate("/dashboard", { replace: true }));
@@ -33,12 +36,14 @@ const App = () => {
     return (
         <>
             <ThemeProvider theme={theme}>
+                <CssBaseline />
                 <CustomAppBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
                 <div className="container">
                     <Routes>
-                        <Route path="/" element={<Home/>} />
-                        <Route path="/dashboard" element={<Dashboard />} />
-                        <Route path="/login" element={<LoginOrSignUp handleSignupOrLogin={handleSignupOrLogin} />} />
+                        <Route path="/" element={<Home isLoggedIn={isLoggedIn}/>} />
+                        <Route path="/login" element={<Login handleSignupOrLogin={handleSignupOrLogin} isLoggedIn={isLoggedIn}/>} />
+                        <Route path="/signup" element={<Signup handleSignupOrLogin={handleSignupOrLogin} isLoggedIn={isLoggedIn}/>} />
+                        <Route path="/dashboard" element={<Dashboard isLoggedIn={isLoggedIn}/>} />
                     </Routes>
                     {/* <Footer /> */}
                 </div>
