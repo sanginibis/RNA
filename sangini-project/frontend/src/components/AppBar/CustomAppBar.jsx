@@ -87,7 +87,7 @@ function CustomAppBar({isLoggedIn, handleLogout}) {
           <Typography textAlign="center" sx={{color: "#ffffff"}} >Login</Typography>
         </MenuItem>
         <MenuItem
-          key='login'
+          key='signup'
           onClick={(e)=>signupClick(e)}
         >
           <Typography textAlign="center" sx={{color: "#ffffff"}} >Sign up</Typography>

@@ -15,10 +15,10 @@ import Signup from './components/Signup/Signup';
 import { CssBaseline } from '@mui/material';
 
 import Footer from './components/Footer/Footer';
+import {withLogin,withoutLogin} from './services/app-route-handler';
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(!!getAuthToken());
-    console.log(isLoggedIn);
     const navigate = useNavigate();
     
     const handleLogout = () => {
@@ -33,6 +33,9 @@ const App = () => {
         return (navigate("/dashboard", { replace: true }));
     }
 
+    const LoginElement = () => <Login handleSignupOrLogin={handleSignupOrLogin}/>;
+    const SignupElement = () => <Signup handleSignupOrLogin={handleSignupOrLogin}/>;
+
     return (
         <>
             <ThemeProvider theme={theme}>
@@ -40,10 +43,10 @@ const App = () => {
                 <CustomAppBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
                 <div className="container">
                     <Routes>
-                        <Route path="/" element={<Home isLoggedIn={isLoggedIn}/>} />
-                        <Route path="/login" element={<Login handleSignupOrLogin={handleSignupOrLogin} isLoggedIn={isLoggedIn}/>} />
-                        <Route path="/signup" element={<Signup handleSignupOrLogin={handleSignupOrLogin} isLoggedIn={isLoggedIn}/>} />
-                        <Route path="/dashboard" element={<Dashboard isLoggedIn={isLoggedIn}/>} />
+                        <Route path="/" element={<Home isLoggedin={isLoggedIn} />} />
+                        <Route path="/login" element={withoutLogin(LoginElement)} />
+                        <Route path="/signup" element={withoutLogin(SignupElement)} />
+                        <Route path="/dashboard" element={withLogin(Dashboard)} />
                     </Routes>
                     {/* <Footer /> */}
                 </div>

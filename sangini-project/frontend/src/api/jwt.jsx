@@ -1,13 +1,13 @@
 // jwt.js
 const setAuthToken = (token) => {
-  localStorage.setItem("authorization", token);
+  if (token===null || token===undefined){
+    removeAuthToken();
+  } else {
+    localStorage.setItem("authorization", token);
+  }
 };
 
 const getAuthToken = () => {
-  return localStorage.getItem("authorization");
-};
-
-const getAuthTokenAPI = async() => {
   return localStorage.getItem("authorization");
 };
 
@@ -15,4 +15,4 @@ const removeAuthToken = () => {
   localStorage.removeItem("authorization");
 };
 
-export { setAuthToken, getAuthToken, removeAuthToken, getAuthTokenAPI };
+export { setAuthToken, getAuthToken, removeAuthToken };
