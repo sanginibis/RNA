@@ -1,4 +1,0 @@
-CREATE DATABASE db_rna;
-CREATE USER 'db_rna_admin'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON db_rna.* TO 'db_rna_admin'@'localhost' WITH GRANT OPTION;
-CREATE USER 'db_rna_user'@'localhost' IDENTIFIED BY 'password';
