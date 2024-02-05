@@ -1,12 +1,17 @@
-import { callApi } from "./restAPICaller";
+/* 
+This component is used to make the backend API call to signup.
+*/
 
-// ----- for getting the bioinfo related data for the RNA sequence ------
+import { callApi } from "./restAPICaller";
+import { signupAPIurl } from "../common/constants";
+
+// ----- for signup api ------
 const signUpAPI = async (signupData) => {
 
-  let response = {};
+  let response = {}; // initialize empty response
 
   try {
-      const apiUrl = "http://localhost:4000/users/register";
+      const apiUrl = signupAPIurl;
       const requireAuth = false;
       const responseData = await callApi(apiUrl, 'POST', signupData, requireAuth);
 

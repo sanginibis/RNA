@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, Component } from 'react';
-import { getAuthToken } from '../api/jwt';
+import { getAuthToken } from '../api/authenticationToken';
 import { Navigate } from 'react-router-dom';
 
 

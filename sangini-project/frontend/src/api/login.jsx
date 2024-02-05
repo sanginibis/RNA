@@ -1,12 +1,17 @@
-import { callApi } from "./restAPICaller";
+/* 
+This component is used to make the backend API call to login.
+*/
 
-// ----- for getting the bioinfo related data for the RNA sequence ------
+import { callApi } from "./restAPICaller";
+import { loginAPIurl } from "../common/constants";
+
+// ----- for login ------
 const loginAPI = async (loginData) => {
 
-  let response = {};
+  let response = {}; // initialize the response to be empty
 
   try {
-      const apiUrl = "http://localhost:4000/users/login";
+      const apiUrl = loginAPIurl;
       const requireAuth = false;
       const responseData = await callApi(apiUrl, 'POST', loginData, requireAuth);
 

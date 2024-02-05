@@ -1,4 +1,9 @@
+/* 
+This component is used to make the backend API call to get predicted structure.
+*/
+
 import { callApi } from "./restAPICaller";
+import { nussinovAPIurl, zukerAPIurl } from "../common/constants";
 
 
 // ----- for getting the Nussinov predicted structure ------
@@ -8,7 +13,7 @@ const nussinovPredictedStructure = async (rnaSequence) => {
 
   try {
     if (rnaSequence) {
-      const apiUrl = "http://127.0.0.1:4000/users/dashboard/nussinov";
+      const apiUrl = nussinovAPIurl;
       const data = { "rna_sequence": rnaSequence };
       const responseData = await callApi(apiUrl, 'POST', data);
       predictedStructure = responseData.data.nussinov;
@@ -28,7 +33,7 @@ const zukerPredictedStructure = async (rnaSequence) => {
   let predictedStructure = "";
   try {
     if (rnaSequence) {
-      const apiUrl = "http://localhost:4000/users/dashboard/zuker";
+      const apiUrl = zukerAPIurl;
       const data = { "rna_sequence": rnaSequence };
       const responseData = await callApi(apiUrl, 'POST', data);
       predictedStructure = responseData.data.zuker;

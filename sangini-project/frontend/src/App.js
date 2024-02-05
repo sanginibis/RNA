@@ -8,7 +8,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './components/Themes/RNAThemes';
-import { getAuthToken, removeAuthToken, setAuthToken } from './api/jwt';
+import { getAuthToken, removeAuthToken, setAuthToken } from './api/authenticationToken';
 import { useNavigate } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
