@@ -22,7 +22,7 @@ Pylint (pip install pylint https://pypi.org/project/pylint/. Install if you need
 At times you may find error - No module named 'pkg_resources' - then run the command
 pip install --upgrade setuptools
 
-set PYTHONPATH=C:\Users\Sandip_Biswas\iWork\iProject\RNA\sangini-project\bioinfo_apis\src;C:\Users\Sandip_Biswas\iWork\iProject\RNA\sangini-project\bioinfo_apis\src\api;C:\Users\Sandip_Biswas\iWork\iProject\RNA\sangini-project\bioinfo_apis\src\tests;
+set PYTHONPATH=C:\iWork\CS-Project\RNA\sangini-project\bioinfo_apis\src;C:\iWork\CS-Project\RNA\sangini-project\bioinfo_apis\src\api;C:\iWork\CS-Project\RNA\sangini-project\bioinfo_apis\src\tests;
 
 4. Install all the dependecies mentioned in the requirements.txt file using the pip install command.
 BEFORE INSTALLING package or module MAKE SURE you have activated your virtual environment.
@@ -37,4 +37,4 @@ coverage (https://coverage.readthedocs.io/en/7.4.0/). This is used to measure wh
 Flask (https://flask.palletsprojects.com/en/3.0.x/). This provides the relevant framework to expose the python features as REST APIs.
 pytest (https://docs.pytest.org/en/7.4.x/). This is used to write the test cases.
 
-6. To start the flask application, from CMD naigate to src and run python app.py.
+6. To start the flask application, from CMD navigate to src and run python app.py.
