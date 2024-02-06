@@ -92,8 +92,6 @@ async function login(params, callback) {
 // This service method is used to signup a user.
 async function register(params, callback) {
 
-    console.log(params);
-
     // destructure and get the fields from the params
     const { firstname, lastname, username, password, organisation, accepted } = params;
 

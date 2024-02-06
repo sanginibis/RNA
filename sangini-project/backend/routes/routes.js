@@ -10,9 +10,10 @@ router.post(urlConfig.users.register, userController.register);
 router.post(urlConfig.users.login, userController.login);
 router.get(urlConfig.users.profile, userController.userProfile);
 
-
 router.post(urlConfig.dashboard.bioinfo, bioController.bioinfo);
 router.post(urlConfig.dashboard.nussinov, bioController.nussinov);
 router.post(urlConfig.dashboard.zuker, bioController.zuker);
+
+router.post(urlConfig.dashboard.saveBioInfoData, bioController.saveBioInfo);
 
 module.exports = router;

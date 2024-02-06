@@ -15,7 +15,7 @@ export default function ForContainer({nussinovStructure, zukerStructure, nussino
     const data_nussinov = `    
         <button
             style="
-                background-color: #6a1b9a;
+                background-color: var(--primary-color);
                 border: none;
                 color: white;
                 padding: 10px 22px;
@@ -34,7 +34,7 @@ export default function ForContainer({nussinovStructure, zukerStructure, nussino
 
         <button
             style="
-                background-color: #6a1b9a;
+                background-color: var(--secondary-color);
                 border: none;
                 color: white;
                 padding: 10px 22px;
@@ -61,7 +61,7 @@ export default function ForContainer({nussinovStructure, zukerStructure, nussino
     const data_zuker = `
         <button
             style="
-                background-color: #6a1b9a;
+                background-color: var(--primary-color);
                 border: none;
                 color: white;
                 padding: 10px 22px;
@@ -80,7 +80,7 @@ export default function ForContainer({nussinovStructure, zukerStructure, nussino
 
         <button
             style="
-                background-color: #6a1b9a;
+                background-color: var(--secondary-color);
                 border: none;
                 color: white;
                 padding: 10px 22px;

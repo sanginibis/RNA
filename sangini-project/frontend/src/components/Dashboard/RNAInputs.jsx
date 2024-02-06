@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Title from '../Title/Title';
 import Button from '@mui/material/Button';
 
-function RNAInputs({rnaNameValue, onChangeRnaName, rnaSequenceValue, onChangeRnaSequence, onPredictedStructureClick}) {
+function RNAInputs({rnaNameValue, onChangeRnaName, rnaSequenceValue, onChangeRnaSequence, onPredictedStructureClick, disabled}) {
     
     const handleInputChangeRNAName = (value) => {
         onChangeRnaName(value);
@@ -69,6 +69,7 @@ function RNAInputs({rnaNameValue, onChangeRnaName, rnaSequenceValue, onChangeRna
                     value={rnaNameValue}
                     onChange={(e) => handleInputChangeRNAName(e.target.value)}
                     inputProps={{ maxLength: 100 }}
+                    disabled={disabled}
                     error={rnaNameErrorMessage.length > 0 ? true : false} // Display error indicator if empty
                     // helperText={!rnaStringName && 'This field is required'} // Add helper text                
                     />
@@ -86,12 +87,12 @@ function RNAInputs({rnaNameValue, onChangeRnaName, rnaSequenceValue, onChangeRna
                     value={rnaSequenceValue}
                     onChange={(e) => handleInputChangeRNASequence(e.target.value)}
                     error={rnaSequenceErrorMessage.length > 0 ? true : false}
-                    inputProps={{ maxLength: 1000 }}
+                    inputProps={{ maxLength: 2000 }}
                     multiline
                     rows={3}
                     />
 
-                    <div style={{display:"flex", flexDirection:"row", marginTop:"5px"}}>
+                    <div style={{display:"flex", flexDirection:"row"}}>
                         <Button 
                             fullWidth
                             variant="contained"

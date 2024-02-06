@@ -41,3 +41,17 @@ exports.zuker = (req, res, next) => {
 
     });
 }
+
+exports.saveBioInfo = (req, res, next) => {
+    bioinfos.saveBioInfoData(req, (error, result) => {
+        if (error) {
+            res.status(201).send(error)
+            return next();
+        }
+        return res.status(200).send({
+            message: "success",
+            data: result
+        });
+
+    });
+}

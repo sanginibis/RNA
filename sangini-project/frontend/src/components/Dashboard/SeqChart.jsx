@@ -19,7 +19,7 @@ function SeqChart({ rnaStringName, rnaString }) {
       p: 2,
       display: 'flex',
       flexDirection: 'column',
-      height: 295,
+      height: 299,
     }}
     >
       <Title>Sequence Chart</Title>
