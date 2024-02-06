@@ -18,6 +18,7 @@ const saveBioInfoDataToDB = async (rnaName, rnaSequence) => {
       const data = { "rna_name": rnaName, "rna_sequence": rnaSequence };
       const responseData = await callApi(apiUrl, 'POST', data);
       bioinfoData = responseData.data;
+      console.log(bioinfoData);
     }
   } catch (error) {
       // when there is error, no data will be retrieved

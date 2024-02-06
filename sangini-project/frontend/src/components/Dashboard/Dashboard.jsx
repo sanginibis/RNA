@@ -23,6 +23,7 @@ import { Avatar, IconButton, Tooltip } from '@mui/material';
 // the modal dialogs
 import HelpDialog from './HelpDialog';
 import TestRNAs from './TestRNAs';
+import Spinner from '../Spinner/Spinner';
 
 export default function Dashboard() {
 
@@ -195,8 +196,7 @@ export default function Dashboard() {
           
           <Container maxWidth="xl" sx={{ mt: 1, mb: 1, left:0, width: '100%', }}>
             
-            {/* <FloatingActionButtons onItemSelected={handleItemSelected}/> */}
-
+          {processSaveBioInfoData ? <Spinner /> :      
             <Grid container spacing={2}>
               {/* 
                 This section is to capture the RNA Name and Sequence.
@@ -247,6 +247,7 @@ export default function Dashboard() {
                     <AminoAcids bioInfoDataLoading={loadBioInfoData} bioInfoData={bioInfoData}/>
                 </Grid>
               </Grid>
+            }
           </Container>
           
           {/*the modal dialogs*/}

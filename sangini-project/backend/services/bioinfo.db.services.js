@@ -16,7 +16,7 @@ const get_users_rna_sequences = async function (user_id, rna_name) {
 
         connection.release();
 
-        return data[0][0].id;
+        return data[0][0];
 
     } catch (error) {
         return null;
@@ -24,24 +24,75 @@ const get_users_rna_sequences = async function (user_id, rna_name) {
 }
 
 
+// get the nussinov predicted structure from the database
+const get_predicted_nussinov_stucture = async function (urs_id) {
+    try {
 
+        // create the sql statement
+        const sqlURS = sql.sqlGetNussinovPredictedStructure;
+
+        // get the connection from the pool
+        const connection = await pool.getConnection();
+        const data = await connection
+            .query(sqlURS, [urs_id]);
+
+        connection.release();
+
+        return data[0][0].predicted_structure;
+
+    } catch (error) {
+        return null;
+    }    
+}
+
+// get the zuker predicted structure from the database
+const get_predicted_zuker_stucture = async function (urs_id) {
+    try {
+
+        // create the sql statement
+        const sqlURS = sql.sqlGetZukerPredictedStructure;
+
+        // get the connection from the pool
+        const connection = await pool.getConnection();
+        const data = await connection
+            .query(sqlURS, [urs_id]);
+
+        connection.release();
+
+        return data[0][0].predicted_structure;
+
+    } catch (error) {
+        return null;
+    }    
+}
 
 // create the data into users_rna_sequences (urs)
 const users_rna_sequences = async function (user_id, rna_name, rna_sequence) {
     try {
 
-        const ursId = await get_users_rna_sequences(user_id, rna_name); // get the rna sequence id
-
-        if (ursId>0) return true;
-
-        // create the sql statement
-        const sqlURS = sql.sqlCreateUserRNASequence;
-
         // get the connection from the pool
         const connection = await pool.getConnection();
-        const data = await connection
-            .query(sqlURS, [user_id, rna_name, rna_sequence]);
-    
+
+        // get the URS Id
+        const dataURS = await get_users_rna_sequences(user_id, rna_name); // get the rna sequence id
+        const ursId = dataURS.id;
+
+        // update the data into urs
+        const sqlURSUpdate =  "UPDATE users_rna_sequences SET rna_sequence = '" + rna_sequence + "'" + " WHERE id = " + ursId;
+        const updateURS = await connection.query(sqlURSUpdate, [ursId]);
+
+        console.log('updateURS', updateURS);
+        // means there was an update
+        if (updateURS[0].affectedRows>0){
+            return true;
+        }
+
+        // create the URS
+        const sqlURS = sql.sqlCreateUserRNASequence;
+
+        // create the row
+        const data = await connection.query(sqlURS, [user_id, rna_name, rna_sequence]);
+
         connection.release();
 
         return true;
@@ -59,21 +110,18 @@ const urs_nussinov_predicted_structure = async function (urs_id, predicted_struc
         // create the sql statement
         let sqlURS = sql.sqlCreateRNASequenceNussinov;
         let sqlURSDelete = sql.sqlDeleteRNASequenceNussinov;
-
-        const ursId = urs_id;
-
-
-        if (ursId>0) {
+        
+        if (urs_id>0) {
             // get the connection from the pool
             const connection = await pool.getConnection();
             
             // delete old record
             const del = await connection
-                .query(sqlURSDelete, [ursId]);
+                .query(sqlURSDelete, [urs_id]);
 
             // create new record
             const data = await connection
-                .query(sqlURS, [ursId, predicted_structure]);
+                .query(sqlURS, [urs_id, predicted_structure]);
 
             connection.release();
 
@@ -94,19 +142,17 @@ const urs_zuker_predicted_structure = async function (urs_id, predicted_structur
         let sqlURS = sql.sqlCreateRNASequenceZuker;
         let sqlURSDelete = sql.sqlDeleteRNASequenceZuker;
 
-        const ursId = urs_id;
-
-        if (ursId>0) {
+        if (urs_id>0) {
             // get the connection from the pool
             const connection = await pool.getConnection();
 
             // delete old record
             const del = await connection
-                .query(sqlURSDelete, [ursId]);
+                .query(sqlURSDelete, [urs_id]);
 
             // create new record
             const data = await connection
-                .query(sqlURS, [ursId, predicted_structure]);
+                .query(sqlURS, [urs_id, predicted_structure]);
 
             connection.release();
 
@@ -127,15 +173,13 @@ const urs_sequences_bio_info = async function (urs_id, bioinfo_data) {
         const sqlURS = sql.sqlCreateRNASequenceBioInfo;
         const sqlURSDelete =  sql.sqlDeleteRNASequenceBioInfo;
 
-        const ursId = urs_id;
-
-        if (ursId>0){
+        if (urs_id>0){
             // get the connection from the pool
             const connection = await pool.getConnection();
 
             // delete old record
             const del = await connection
-                .query(sqlURSDelete, [ursId]);
+                .query(sqlURSDelete, [urs_id]);
 
             // since the bio info data is an array so loop it and insert each record
             for (let i = 0; i < bioinfo_data.length; i++) {
@@ -143,7 +187,7 @@ const urs_sequences_bio_info = async function (urs_id, bioinfo_data) {
                 const data = bioinfo_data[i].data;
 
                 const dataCreated = await connection
-                .query(sqlURS, [ursId, name, data]);            
+                .query(sqlURS, [urs_id, name, data]);            
             }        
             connection.release();
 
@@ -164,15 +208,13 @@ const urs_sequences_amino_acids = async function (urs_id, amino_acids_data) {
         const sqlURS = sql.sqlCreateRNASequenceAminoAcids;
         const sqlURSDelete =  sql.sqlDeleteRNASequenceAminoAcids;
 
-        const ursId = urs_id;
-
-        if (ursId>0) {
+        if (urs_id>0) {
             // get the connection from the pool
             const connection = await pool.getConnection();
 
             // delete old record
             const del = await connection
-                .query(sqlURSDelete, [ursId]);            
+                .query(sqlURSDelete, [urs_id]);            
             
             // since the translated_codons is an array so loop it and insert each record
             for (let i = 0; i < amino_acids_data.length; i++) {
@@ -183,7 +225,7 @@ const urs_sequences_amino_acids = async function (urs_id, amino_acids_data) {
                 const amino_acid_positions = amino_acids_data[i].positions.toString();
 
                 const dataCreated = await connection
-                .query(sqlURS, [ursId, amino_acid_code, amino_acid_name, amino_acid_codons, amino_acid_count, amino_acid_positions]);            
+                .query(sqlURS, [urs_id, amino_acid_code, amino_acid_name, amino_acid_codons, amino_acid_count, amino_acid_positions]);            
             }        
             connection.release();
 
@@ -198,6 +240,8 @@ const urs_sequences_amino_acids = async function (urs_id, amino_acids_data) {
 
 module.exports = {
     get_users_rna_sequences,
+    get_predicted_nussinov_stucture,
+    get_predicted_zuker_stucture,
     users_rna_sequences,
     urs_nussinov_predicted_structure,
     urs_zuker_predicted_structure,
