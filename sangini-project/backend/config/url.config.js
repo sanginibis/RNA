@@ -15,6 +15,7 @@ module.exports = {
         bioinfo:"/dashboard/bioinfo",
         nussinov: "/dashboard/nussinov",
         zuker: "/dashboard/zuker",
-        saveBioInfoData : "/dashboard/saveBioInfoData"        
+        saveBioInfoData : "/dashboard/saveBioInfoData",        
+        getRNASequences : "/dashboard/getRNASequences"        
     }
 }

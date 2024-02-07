@@ -23,6 +23,27 @@ const get_users_rna_sequences = async function (user_id, rna_name) {
     }    
 }
 
+// get all the users_rna_sequences id so that other detail tables can have records
+const get_users_all_rna_sequences = async function (user_id) {
+    try {
+
+        // create the sql statement
+        const sqlURS = sql.sqlGetUserAllRNASequences;
+
+        // get the connection from the pool
+        const connection = await pool.getConnection();
+        const data = await connection
+            .query(sqlURS, [user_id]);
+
+        connection.release();
+
+        return data;
+
+    } catch (error) {
+        return null;
+    }    
+}
+
 
 // get the nussinov predicted structure from the database
 const get_predicted_nussinov_stucture = async function (urs_id) {
@@ -67,7 +88,7 @@ const get_predicted_zuker_stucture = async function (urs_id) {
 }
 
 // create the data into users_rna_sequences (urs)
-const users_rna_sequences = async function (user_id, rna_name, rna_sequence) {
+const create_users_rna_sequences = async function (user_id, rna_name, rna_sequence) {
     try {
 
         // get the connection from the pool
@@ -75,16 +96,18 @@ const users_rna_sequences = async function (user_id, rna_name, rna_sequence) {
 
         // get the URS Id
         const dataURS = await get_users_rna_sequences(user_id, rna_name); // get the rna sequence id
-        const ursId = dataURS.id;
 
-        // update the data into urs
-        const sqlURSUpdate =  "UPDATE users_rna_sequences SET rna_sequence = '" + rna_sequence + "'" + " WHERE id = " + ursId;
-        const updateURS = await connection.query(sqlURSUpdate, [ursId]);
+        if (dataURS){
+            const ursId = dataURS.id;
 
-        console.log('updateURS', updateURS);
-        // means there was an update
-        if (updateURS[0].affectedRows>0){
-            return true;
+            // update the data into urs
+            const sqlURSUpdate =  "UPDATE users_rna_sequences SET rna_sequence = '" + rna_sequence + "'" + " WHERE id = " + ursId;
+            const updateURS = await connection.query(sqlURSUpdate, [ursId]);
+
+            // means there was an update
+            if (updateURS[0].affectedRows>0){
+                return true;
+            }
         }
 
         // create the URS
@@ -104,7 +127,7 @@ const users_rna_sequences = async function (user_id, rna_name, rna_sequence) {
 }
 
 // create the data into urs_nussinov_structure
-const urs_nussinov_predicted_structure = async function (urs_id, predicted_structure) {
+const create_urs_nussinov_predicted_structure = async function (urs_id, predicted_structure) {
     try {
 
         // create the sql statement
@@ -135,7 +158,7 @@ const urs_nussinov_predicted_structure = async function (urs_id, predicted_struc
 }
 
 // create the data into urs_zuker_structure
-const urs_zuker_predicted_structure = async function (urs_id, predicted_structure) {
+const create_urs_zuker_predicted_structure = async function (urs_id, predicted_structure) {
     try {
 
         // create the sql statement
@@ -166,7 +189,7 @@ const urs_zuker_predicted_structure = async function (urs_id, predicted_structur
 }
 
 // create the data into urs_sequences_bio_info to hold the bio info details
-const urs_sequences_bio_info = async function (urs_id, bioinfo_data) {
+const create_urs_sequences_bio_info = async function (urs_id, bioinfo_data) {
     try {
 
         // create the sql statement
@@ -201,7 +224,7 @@ const urs_sequences_bio_info = async function (urs_id, bioinfo_data) {
 }
 
 // create the data into urs_sequences_amino_acids to hold the translated data
-const urs_sequences_amino_acids = async function (urs_id, amino_acids_data) {
+const create_urs_sequences_amino_acids = async function (urs_id, amino_acids_data) {
     try {
 
         // create the sql statement
@@ -240,11 +263,12 @@ const urs_sequences_amino_acids = async function (urs_id, amino_acids_data) {
 
 module.exports = {
     get_users_rna_sequences,
+    get_users_all_rna_sequences,
     get_predicted_nussinov_stucture,
     get_predicted_zuker_stucture,
-    users_rna_sequences,
-    urs_nussinov_predicted_structure,
-    urs_zuker_predicted_structure,
-    urs_sequences_bio_info,
-    urs_sequences_amino_acids
+    create_users_rna_sequences,
+    create_urs_nussinov_predicted_structure,
+    create_urs_zuker_predicted_structure,
+    create_urs_sequences_bio_info,
+    create_urs_sequences_amino_acids
 }

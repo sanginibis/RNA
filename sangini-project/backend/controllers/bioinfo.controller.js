@@ -55,3 +55,17 @@ exports.saveBioInfo = (req, res, next) => {
 
     });
 }
+
+exports.getRNASequences = (req, res, next) => {
+    bioinfos.rnaSequences(req, (error, result) => {
+        if (error) {
+            res.status(201).send(error)
+            return next();
+        }
+        return res.status(200).send({
+            message: "success",
+            data: result
+        });
+
+    });
+}

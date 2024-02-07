@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -12,11 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 
 import { rnaTestSequences } from '../../config/navigation';
 
-
-
 export default function TestRNAs({ open, handleClose, onItemSelected }) {
-    const [selected, setSelected] = useState(null);
-
     const handleItemClick = (item) => {
         onItemSelected(item);
         handleClose();
@@ -36,8 +32,12 @@ export default function TestRNAs({ open, handleClose, onItemSelected }) {
             <DialogContentText id="alert-dialog-description">
                 <List>
                     {rnaTestSequences.map((rna) => (
-                        <ListItem key={rna.id} button onClick={() => handleItemClick(rna)} selected={selected === rna}>
-                        <ListItemText primary={rna.Name} />
+                        <ListItem 
+                          style={{cursor: 'pointer'}}
+                          key={rna.id} 
+                          onClick={() => handleItemClick(rna)}
+                        >
+                        <ListItemText primary={rna.rna_name} />
                         </ListItem>
                     ))}
                 </List>

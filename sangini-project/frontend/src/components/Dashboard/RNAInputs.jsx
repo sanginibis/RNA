@@ -28,7 +28,7 @@ function RNAInputs({rnaNameValue, onChangeRnaName, rnaSequenceValue, onChangeRna
     };
 
     // ---- when the button is clicked it triggers the useEffect to fetch relevant data
-    const getPredictedStructure = (value) => {
+    const getPredictedStructure = (e) => {
         //--RNA Name is mandatory
         if (rnaNameValue.length>0 && rnaSequenceValue.length>0){
             onPredictedStructureClick(rnaSequenceValue)            
@@ -36,13 +36,6 @@ function RNAInputs({rnaNameValue, onChangeRnaName, rnaSequenceValue, onChangeRna
             setRnaNameErrorMessage('The input ins required.')
             setRnaSequenceErrorMessage('Valid inputs allowed are UGAC only.')
         }
-    }
-    
-    // --- reset the inputs
-    const resetInputs = (value) => {
-        handleInputChangeRNAName("")
-        handleInputChangeRNASequence("");
-        onPredictedStructureClick("");
     }
     
   return (
@@ -92,28 +85,15 @@ function RNAInputs({rnaNameValue, onChangeRnaName, rnaSequenceValue, onChangeRna
                     rows={3}
                     />
 
-                    <div style={{display:"flex", flexDirection:"row"}}>
-                        <Button 
-                            fullWidth
-                            variant="contained"
-                            id="PredictStructure"
-                            name="PredictStructure"
-                            onClick={(e)=>getPredictedStructure(e)}
-                        >
-                            Get Predicted Structure
-                        </Button>
-                        <Button 
-                            fullWidth
-                            variant="contained"
-                            style={{marginLeft: "10px"}}
-                            id="resetInputs"
-                            name="resetInputs"
-                            onClick={(e)=>resetInputs(e)}
-                        >
-                            Reset
-                        </Button>
-                    </div>
-                      
+                    <Button 
+                        fullWidth
+                        variant="contained"
+                        id="PredictStructure"
+                        name="PredictStructure"
+                        onClick={(e)=>getPredictedStructure(e)}
+                    >
+                        Get Predicted Structure
+                    </Button>
                 </Paper>
 
         

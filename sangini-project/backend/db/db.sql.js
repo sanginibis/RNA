@@ -10,8 +10,8 @@ const sqlCreateRNASequenceBioInfo = "INSERT INTO urs_sequences_bio_info (urs_id,
 
 const sqlGetUser = "SELECT * FROM users where username = ?"
 const sqlGetUserProfile = "SELECT users.id, users.username, users_profile.firstname, users_profile.lastname, users_profile.organisaion FROM users, users_profile WHERE users.id = users_profile.users_id AND users.id = ?";
-const sqlGetUserAllRNASequences = "SELECT users.id, users_rna_sequences.rna_sequence, users_rna_sequences.nussinov_predicted_structure, users_rna_sequences.zuker_predicted_structure FROM users, users_rna_sequences WHERE users.id = users_rna_sequences.users_id AND users.id = ?";
 const sqlGetUsersRNASequence = "SELECT id, users_id, rna_sequence FROM users_rna_sequences WHERE users_id = ? AND rna_name = ?";
+const sqlGetUserAllRNASequences = "SELECT id, rna_name, rna_sequence FROM users_rna_sequences WHERE users_id = ? ORDER BY id";
 const sqlGetNussinovPredictedStructure = "SELECT predicted_structure FROM urs_nussinov_structure WHERE urs_id = ?";
 const sqlGetZukerPredictedStructure = "SELECT predicted_structure FROM urs_zuker_structure WHERE urs_id = ?";
 

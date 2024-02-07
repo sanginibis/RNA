@@ -141,10 +141,10 @@ function bioInfoTableRowContent(_index, row) {
   );
 }
 
-export default function AminoAcids({ bioInfoDataLoading, bioInfoData }) {
+export default function AminoAcids({ bioInfoDataLoading, aminoAcidsData, bioInfoData }) {
   
-  let rowsCodon = bioInfoData.translated_codons;
-  let rowsBioInfo = bioInfoData.bio_info_details;
+  let rowsCodon = aminoAcidsData;
+  let rowsBioInfo = bioInfoData;
 
   return (
     <Grid container spacing={2}>

@@ -15,5 +15,6 @@ router.post(urlConfig.dashboard.nussinov, bioController.nussinov);
 router.post(urlConfig.dashboard.zuker, bioController.zuker);
 
 router.post(urlConfig.dashboard.saveBioInfoData, bioController.saveBioInfo);
+router.post(urlConfig.dashboard.getRNASequences, bioController.getRNASequences);
 
 module.exports = router;

@@ -1,11 +1,13 @@
-import CircularProgress from '@mui/material/CircularProgress'; // Import the icon
+import BiotechIcon from '@mui/icons-material/Biotech';
+import Title from '../Title/Title';
 
 export default function Spinner() {
   return (
-    <div className="spinner-container" style={{alignItems:"center"}}>
-      <CircularProgress size={50} // Adjust size as needed
-                       thickness={4} // Adjust thickness as desired
-      />
+    <div className={"loader-wrapper"}>
+      <div className={"loader"}>
+        <BiotechIcon style={{width: '60px', height: '60px'}} />  
+        <Title>Loading...</Title>      
+      </div>
     </div>
-  );
+   );
 }
