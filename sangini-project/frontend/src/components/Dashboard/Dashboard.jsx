@@ -87,6 +87,7 @@ export default function Dashboard() {
 
   //-----------------------------------THE MENU ACTIONS ------------------------------------------
   // state of the menu action taken
+  // eslint-disable-next-line
   const [menuAction, setMenuAction] = useState('');  
 
   // setting up the menu functions for the dashboard
@@ -153,6 +154,7 @@ export default function Dashboard() {
 
   //-----------------------------------HANDLING HELP AND TEST DATA DIALOGS ---------------------------------
   // ----- this the TEST dialog list item selected value -------
+  // eslint-disable-next-line
   const [selectedItem, setSelectedItem] = useState('');  
 
   // when an item is selected from the "Test RNAs" dialog

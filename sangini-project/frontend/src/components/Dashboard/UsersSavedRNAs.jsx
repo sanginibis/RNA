@@ -6,11 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Title from '../Title/Title';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import { FixedSizeList } from 'react-window';
-import { Box, Grid, Table, TableBody, TableCell, TableContainer, TableRow, Typography, Paper, TableHead } from '@mui/material';
+import { Grid, Table, TableBody, TableCell, TableContainer, TableRow, Typography, Paper, TableHead } from '@mui/material';
 import { TableVirtuoso } from 'react-virtuoso';
 
 // declare the columns
