@@ -24,6 +24,8 @@ pip install --upgrade setuptools
 
 set PYTHONPATH=C:\iWork\CS-Project\RNA\sangini-project\bioinfo_apis\src;C:\iWork\CS-Project\RNA\sangini-project\bioinfo_apis\src\api;C:\iWork\CS-Project\RNA\sangini-project\bioinfo_apis\src\tests;
 
+set PYTHONPATH=C:\Users\Sandip_Biswas\iWork\iProject\RNA\sangini-project\bioinfo_apis\src;C:\Users\Sandip_Biswas\iWork\iProject\RNA\sangini-project\bioinfo_apis\src\api;C:\Users\Sandip_Biswas\iWork\iProject\RNA\sangini-project\bioinfo_apis\src\tests;
+
 4. Install all the dependecies mentioned in the requirements.txt file using the pip install command.
 BEFORE INSTALLING package or module MAKE SURE you have activated your virtual environment.
 While working further in the project you can update your requirements.txt by running the command

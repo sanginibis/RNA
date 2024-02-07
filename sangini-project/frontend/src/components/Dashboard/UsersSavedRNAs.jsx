@@ -10,27 +10,79 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { FixedSizeList } from 'react-window';
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Table, TableBody, TableCell, TableContainer, TableRow, Typography, Paper, TableHead } from '@mui/material';
+import { TableVirtuoso } from 'react-virtuoso';
+
+// declare the columns
+const columns = [
+  {
+    width: 180,
+    label: 'RNA Name',
+    dataKey: 'rna_name',
+  },
+  {
+    width: 180,
+    label: 'Sequence',
+    dataKey: 'rna_sequence',
+  }
+];
+
+// declare the table component that will hold the columns and rows
+const tableComponents = {
+  Scroller: React.forwardRef((props, ref) => (
+    <TableContainer component={Paper} {...props} ref={ref} />
+  )),
+  Table: (props) => (
+    <Table {...props} sx={{ borderCollapse: 'separate', tableLayout: 'fixed' }} />
+  ),
+  TableHead,
+  TableRow: ({ item: _item, ...props }) => <TableRow {...props} />,
+  TableBody: React.forwardRef((props, ref) => <TableBody {...props} ref={ref} />),  
+}
+
+// function that creates the column headers
+function tableHeaderContent() {
+  return (
+    <TableRow>
+      {columns.map((column) => (
+        <TableCell
+          key={column.dataKey}
+          variant="head"
+          align={column.numeric || false ? 'right' : 'left'}
+          style={{ width: column.width }}
+          sx={{
+            backgroundColor: 'background.paper',
+            fontWeight: 500,
+          }}
+        >
+          <Typography style={{fontSize:'12px', fontWeight: 800}}>{column.label}</Typography>
+        </TableCell>
+        
+      ))}
+    </TableRow>
+  );
+}
 
 
 export default function  UsersSavedRNAs ({open, handleClose, onItemSelected, rnaSequences}) {
+  
+  let rows = rnaSequences;
+
   const handleItemClick = (item) => {
     onItemSelected(item);
     handleClose();
   };
-  
-  const Row = ({ data, index, style }) => {
-    return (
-      <div>
-        <ListItem key={data[index]} style={{cursor: 'pointer'}} onClick={() => handleItemClick(data[index])}>
-          <ListItemText
-            primary={data[index].rna_name}
-          />
-        </ListItem>
-      </div>
-    );
-  };
 
+  // function that creates each row content
+  function tableRowContent(_index, row) {
+    return (
+      <React.Fragment>
+        <TableCell sx={{cursor:'pointer'}} onClick={(e)=>handleItemClick(row)}>{row.rna_name}</TableCell>
+        <TableCell sx={{cursor:'pointer'}} onClick={(e)=>handleItemClick(row)}>{row.rna_sequence}</TableCell>
+      </React.Fragment>
+    );
+  }
+  
   return (
     <Dialog
     open={open}
@@ -44,20 +96,20 @@ export default function  UsersSavedRNAs ({open, handleClose, onItemSelected, rna
 
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-        <Box sx={{ width: '100%', height: 400, maxWidth: 360, bgcolor: 'background.paper' }}>
-          <FixedSizeList
-          itemData={rnaSequences}
-          itemCount={rnaSequences.length}
-          itemSize={46}
-          width="100%"
-          height={400}>
-            {Row}
-          </FixedSizeList>
-          </Box>
+          <Grid item xs={12}>
+            <div style={{display: 'flex', flexDirection: 'column', height: 300, width: 500 }}>
+                  <TableVirtuoso
+                    data={rows}
+                    components={tableComponents}
+                    fixedHeaderContent={tableHeaderContent}
+                    itemContent={tableRowContent}
+                  />
+            </div>
+          </Grid>
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} autoFocus>
+        <Button onClick={handleClose} autoFocus >
           Close
         </Button>
       </DialogActions>

@@ -157,8 +157,8 @@ export default function Dashboard() {
 
   // when an item is selected from the "Test RNAs" dialog
   const handleItemSelected = (item) => {
-    setSelectedItem(item);
     resetData();
+    setSelectedItem(item);
     onChangeRnaName(item.rna_name);
     onChangeRnaSequence(item.rna_sequence);
     setDisabled(true);

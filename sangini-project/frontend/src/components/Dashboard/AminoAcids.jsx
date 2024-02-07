@@ -59,7 +59,7 @@ const columnsBioInfo = [
   }
 ];
 
-// declare the table component that will hold the columsn and rows
+// declare the table component that will hold the columns and rows
 const tableComponents = {
   Scroller: React.forwardRef((props, ref) => (
     <TableContainer component={Paper} {...props} ref={ref} />

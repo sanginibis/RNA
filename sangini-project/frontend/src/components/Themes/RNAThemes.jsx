@@ -93,7 +93,8 @@ const theme = createTheme({
           height: 40,
           padding: '0 30px',
           textTransform: 'none',
-          fontSize: '14px'
+          fontSize: '14px',
+          ":hover" : { backgroundColor: palleteColors.secondaryMain }
         },
       },
     },
