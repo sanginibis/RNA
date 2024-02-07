@@ -98,7 +98,6 @@ const rnaSequences = async function (req, callback) {
 
     try {
         responseData = await bioDB.get_users_all_rna_sequences(user_id);
-        console.log(responseData);
     } catch (error) {
         return callback({ message: error, err_code: "GET_ALL_RNA_SEQUENCES", err_no: "202" });
     }
