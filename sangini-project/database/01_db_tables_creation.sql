@@ -20,8 +20,6 @@ USE `db_rna` ;
 -- -----------------------------------------------------
 -- Table `db_rna`.`users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_rna`.`users` ;
-
 CREATE TABLE IF NOT EXISTS `db_rna`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(255) NOT NULL,
@@ -29,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `db_rna`.`users` (
   `user_type` ENUM('user', 'admin') NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 23
+AUTO_INCREMENT = 28
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -43,8 +41,6 @@ CREATE INDEX `idx_users_id_user_type` ON `db_rna`.`users` (`id` ASC, `user_type`
 -- -----------------------------------------------------
 -- Table `db_rna`.`users_rna_sequences`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_rna`.`users_rna_sequences` ;
-
 CREATE TABLE IF NOT EXISTS `db_rna`.`users_rna_sequences` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `users_id` INT NOT NULL,
@@ -55,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `db_rna`.`users_rna_sequences` (
     FOREIGN KEY (`users_id`)
     REFERENCES `db_rna`.`users` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 38
+AUTO_INCREMENT = 58
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -67,8 +63,6 @@ CREATE INDEX `fk_urs_users_id_idx` ON `db_rna`.`users_rna_sequences` (`users_id`
 -- -----------------------------------------------------
 -- Table `db_rna`.`urs_nussinov_structure`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_rna`.`urs_nussinov_structure` ;
-
 CREATE TABLE IF NOT EXISTS `db_rna`.`urs_nussinov_structure` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `urs_id` INT NOT NULL,
@@ -78,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `db_rna`.`urs_nussinov_structure` (
     FOREIGN KEY (`urs_id`)
     REFERENCES `db_rna`.`users_rna_sequences` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 193
+AUTO_INCREMENT = 245
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -88,8 +82,6 @@ CREATE INDEX `fk_urs_id_nussinov` ON `db_rna`.`urs_nussinov_structure` (`urs_id`
 -- -----------------------------------------------------
 -- Table `db_rna`.`urs_sequences_amino_acids`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_rna`.`urs_sequences_amino_acids` ;
-
 CREATE TABLE IF NOT EXISTS `db_rna`.`urs_sequences_amino_acids` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `urs_id` INT NOT NULL,
@@ -103,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `db_rna`.`urs_sequences_amino_acids` (
     FOREIGN KEY (`urs_id`)
     REFERENCES `db_rna`.`users_rna_sequences` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2702
+AUTO_INCREMENT = 3421
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -113,8 +105,6 @@ CREATE INDEX `fk_urs_id_idx` ON `db_rna`.`urs_sequences_amino_acids` (`urs_id` A
 -- -----------------------------------------------------
 -- Table `db_rna`.`urs_sequences_bio_info`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_rna`.`urs_sequences_bio_info` ;
-
 CREATE TABLE IF NOT EXISTS `db_rna`.`urs_sequences_bio_info` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `urs_id` INT NOT NULL,
@@ -125,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `db_rna`.`urs_sequences_bio_info` (
     FOREIGN KEY (`urs_id`)
     REFERENCES `db_rna`.`users_rna_sequences` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 1665
+AUTO_INCREMENT = 2081
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -133,30 +123,8 @@ CREATE INDEX `fk_urs_id_idx` ON `db_rna`.`urs_sequences_bio_info` (`urs_id` ASC)
 
 
 -- -----------------------------------------------------
--- Table `db_rna`.`urs_sequences_pngs`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_rna`.`urs_sequences_pngs` ;
-
-CREATE TABLE IF NOT EXISTS `db_rna`.`urs_sequences_pngs` (
-  `id` INT NOT NULL,
-  `urs_id` INT NOT NULL,
-  `model_image` BLOB NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_urs_pngs_id`
-    FOREIGN KEY (`urs_id`)
-    REFERENCES `db_rna`.`users_rna_sequences` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-CREATE INDEX `fk_urs_pngs_id_idx` ON `db_rna`.`urs_sequences_pngs` (`urs_id` ASC) VISIBLE;
-
-
--- -----------------------------------------------------
 -- Table `db_rna`.`urs_zuker_structure`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_rna`.`urs_zuker_structure` ;
-
 CREATE TABLE IF NOT EXISTS `db_rna`.`urs_zuker_structure` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `urs_id` INT NOT NULL,
@@ -166,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `db_rna`.`urs_zuker_structure` (
     FOREIGN KEY (`urs_id`)
     REFERENCES `db_rna`.`users_rna_sequences` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 194
+AUTO_INCREMENT = 246
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -176,8 +144,6 @@ CREATE INDEX `fk_urs_id_zuker` ON `db_rna`.`urs_zuker_structure` (`urs_id` ASC) 
 -- -----------------------------------------------------
 -- Table `db_rna`.`users_audit`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_rna`.`users_audit` ;
-
 CREATE TABLE IF NOT EXISTS `db_rna`.`users_audit` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
@@ -186,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `db_rna`.`users_audit` (
   `date_time` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 28
+AUTO_INCREMENT = 36
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -194,8 +160,6 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `db_rna`.`users_profile`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_rna`.`users_profile` ;
-
 CREATE TABLE IF NOT EXISTS `db_rna`.`users_profile` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `users_id` INT NOT NULL,
@@ -208,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `db_rna`.`users_profile` (
     FOREIGN KEY (`users_id`)
     REFERENCES `db_rna`.`users` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 16
+AUTO_INCREMENT = 21
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
