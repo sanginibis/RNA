@@ -58,22 +58,22 @@ export default function Home({isLoggedin}) {
               What is RNA Sequencing?
             </Typography>
             <Typography variant="h6" align="center" color="text.primary" paragraph>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. A, vero? Numquam eveniet mollitia nam saepe,
-              deleniti quae reiciendis voluptates consequatur, natus cupiditate blanditiis iste ea esse, amet delectus aut culpa?
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. A, vero? Numquam eveniet mollitia nam saepe,
-              deleniti quae reiciendis voluptates consequatur, natus cupiditate blanditiis iste ea esse, amet delectus aut culpa?
-              
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. A, vero? Numquam eveniet mollitia nam saepe,
-              deleniti quae reiciendis voluptates consequatur, natus cupiditate blanditiis iste ea esse, amet delectus aut culpa?
+            Ribonucleic acid (RNA) is a nucleic acid present in all living cells that has structural 
+            similarities to DNA. Unlike DNA, however, RNA is single-stranded. An RNA molecule has a 
+            backbone made of alternating phosphate groups and the sugar ribose, rather than the deoxyribose found 
+            in DNA. Attached to each sugar is one of four bases: adenine (A), uracil (U), cytosine (C) or guanine (G). 
             </Typography>
             <Typography variant="h8" align="center" color="text.secondary" paragraph>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. A, vero? Numquam eveniet mollitia nam saepe,
-              deleniti quae reiciendis voluptates consequatur, natus cupiditate blanditiis iste ea esse, amet delectus aut culpa?
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. A, vero? Numquam eveniet mollitia nam saepe,
-              deleniti quae reiciendis voluptates consequatur, natus cupiditate blanditiis iste ea esse, amet delectus aut culpa?
-              
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. A, vero? Numquam eveniet mollitia nam saepe,
-              deleniti quae reiciendis voluptates consequatur, natus cupiditate blanditiis iste ea esse, amet delectus aut culpa?
+              RNA sequencing is a technique that can examine the quantity and sequences of RNA in a sample using 
+              next-generation sequencing (NGS).
+              RNA sequencing lets us investigate and discover the transcriptome, the total cellular content of 
+              types of RNAs: mRNA, rRNA and tRNA. Understanding the transcriptome is key to connect the 
+              information in our genome with its functional protein. It can tell us which genes are turned on 
+              in a cell, what their level of transcription is, and at what times they are activated or shut off. 
+              This allows scientists to understand the biology of a cell more deeply and assess changes that may 
+              indicate disease. Some of the most popular techniques that use RNA-seq are transcriptional 
+              profiling, single nucleotide polymorphism (SNP) identification, RNA editing and differential gene 
+              expression analysis.
             </Typography>
             <Stack
               sx={{ pt: 3 }}
