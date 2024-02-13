@@ -1,5 +1,6 @@
 bioinfo
 .vscode
 src/__pycache__
+src/ap/__pycache__
 tests/__pycache__
 bio

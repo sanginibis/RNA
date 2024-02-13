@@ -13,7 +13,7 @@ class NussinovPredictedStructure:
 		"""
 		Return True if RNA nucleotides are Watson-Crick base pairs
 		"""
-		pairs = {"A": "U", "U": "A", "G": "C", "C": "G"}  # ...or a list of tuples...
+		pairs = {"A": "U", "U": "A", "G": "C", "C": "G"} 
 
 		# check if pair is couplable
 		if pair in pairs.items():
@@ -87,7 +87,6 @@ class NussinovPredictedStructure:
 		nm[:] = np.NAN
 
 		# init diaganols to 0
-		# few ways to do this: np.fill_diaganol(), np.diag(), nested loop, ...
 		nm[range(M), range(M)] = 0
 		nm[range(1, len(rna)), range(len(rna) - 1)] = 0
 
