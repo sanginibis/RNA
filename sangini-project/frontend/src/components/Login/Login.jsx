@@ -48,7 +48,7 @@ export default function Login({handleSignupOrLogin}) {
 
       // call the api
       const response = await loginAPI(loginData);
-console.log(response);
+
       // handle the response
       if (response.err_no>0){
         alert(response.message);
