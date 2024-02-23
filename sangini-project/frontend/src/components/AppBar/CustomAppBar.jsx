@@ -44,7 +44,7 @@ function CustomAppBar({isLoggedIn, handleLogout, onItemSelected}) {
                 </Avatar>
               </IconButton>
             </Tooltip>
-            &nbsp;
+            {/* &nbsp;
             <Tooltip title={'profile'} placement='bottom'>
               <IconButton onClick={(e)=>navigate("/profile", { replace: true })} style={{background:'var(--primary-color)'}}>
                 <Avatar>
@@ -59,7 +59,7 @@ function CustomAppBar({isLoggedIn, handleLogout, onItemSelected}) {
                   <PsychologyAltIcon />
                 </Avatar>
               </IconButton>
-            </Tooltip>
+            </Tooltip> */}
             &nbsp;
             <Tooltip title={'logout'} placement='bottom'>
               <IconButton onClick={(e)=>handleLogout()} style={{background:'var(--primary-color)'}}>

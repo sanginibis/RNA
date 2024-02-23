@@ -40,3 +40,8 @@ Flask (https://flask.palletsprojects.com/en/3.0.x/). This provides the relevant 
 pytest (https://docs.pytest.org/en/7.4.x/). This is used to write the test cases.
 
 6. To start the flask application, from CMD navigate to src and run python app.py.
+
+TEST ACCOUNT
+EMAIL: sb@email.com
+PASSWORD: Next123@
+ 

@@ -48,7 +48,7 @@ const App = () => {
                         <Route path="/signup" element={withoutLogin(SignupElement)} />
                         <Route path="/dashboard" element={withLogin(Dashboard)} />
                     </Routes>
-                    {/* <Footer /> */}
+                    <Footer />
                 </div>
             </ThemeProvider>
         </>
