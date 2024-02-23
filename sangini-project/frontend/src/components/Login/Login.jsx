@@ -9,76 +9,64 @@ import { loginAPI } from '../../api/login';
 import Link from '@mui/material/Link';
 import { Container } from '@mui/material';
 
+import {useFormik} from "formik";
+
+// regex for email and password validations
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-const passwordRegex = /.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])[a-zA-Z0-9@#$%^&+=]*$/;
+
+// validate the input fields
+const validate =  values => {
+
+  const errors = {}; // initialise the errors
+  const isRequired = false;
+
+  if (!values.email) errors.email = isRequired;
+  if (!values.password) errors.password = isRequired;
+  if (!emailRegex.test(values.email)) errors.email = isRequired;
+
+  return errors;
+
+};
 
 export default function Login({handleSignupOrLogin}) {
 
-  // --- EMail and Password input handling ---
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
+  // initialise the formik hook - note here formik is used to handle the submission of the form
+  const formik = useFormik({
+    initialValues:{
+      email:'',
+      password:'',
+    },
+    validate,
+    onSubmit: async(values, {resetForm}) => {
+      console.log(values);
 
-  const [password, setPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-
-  const handleEmailChange = (value) => {
-    setEmailError('');
-    setEmail(value);
-  };
-
-  const handlePasswordChange = (value) => {
-    setPasswordError('');
-    setPassword(value);
-  };
-
-  const [errorMessage, setErrorMessage] = useState('');
-
-  // on click of the button to signup
-  const handleSubmit = async (event) => {
-
-    let errorM = false;
-
-    // validate
-    if (!emailRegex.test(email)) {
-      errorM = true;
-      setEmailError('Email provided is not in correct format.');
-    } else {
-      setEmailError('');
-    }
-
-    if (!passwordRegex.test(password)) {
-      errorM = true;
-      setPasswordError('Password is required.');
-    }
-    else {
-      setPasswordError('');
-    }
-    
-    if (!errorM) {
       // setup the data
       const loginData = {
-        "username" : email,
-        "password" : password
+        "username" : values.email,
+        "password" : values.password,
       };
 
       // call the api
       const response = await loginAPI(loginData);
-
+console.log(response);
       // handle the response
       if (response.err_no>0){
-        setErrorMessage(response.message);
+        alert(response.message);
       } else {
         // make sure the user is taken to dashboard
         handleSignupOrLogin(response.data.token);
       }
-    };
-  };  
 
+    },
+  });
+    
   return (
     <Container style={{
       width: '30%',
       paddingTop: '120px',
     }}>
+      <form onSubmit={formik.handleSubmit}>
+
     <div style={{
       display:'flex', 
       flexDirection:'column', 
@@ -116,12 +104,12 @@ export default function Login({handleSignupOrLogin}) {
         label="Email Address"
         name="email"
         autoFocus
-        value={email}
-        onChange={(e) => handleEmailChange(e.target.value)}
-        inputProps={{ maxLength: 100 }}
-        error={emailError.length > 0 ? true : false} // Display error indicator if empty
-        // helperText={emailError.length > 0 ? emailError : ''} // Add helper text   
-      />
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values.email}
+        error={formik.touched.email && formik.errors.email ? true : false}
+        />
+
       <TextField
         margin="normal"
         required
@@ -130,21 +118,17 @@ export default function Login({handleSignupOrLogin}) {
         label="Password"
         type="password"
         id="password"
-        value={password}
-        onChange={(e) => handlePasswordChange(e.target.value)}
-        inputProps={{ maxLength: 100 }}
-        error={passwordError.length > 0 ? true : false} // Display error indicator if empty
-        // helperText={passwordError.length > 0 ? passwordError : ''} // Add helper text   
-      />
-      {
-        errorMessage.length > 0 ? <Typography style={{color:'red', alignSelf:'center'}}>{errorMessage}</Typography> : ''
-      }
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values.password}
+        error={formik.touched.password && formik.errors.password ? true : false}
+        />
 
       <Button
+        type="submit"
         fullWidth
         variant="contained"
         sx={{ mt: 3, mb: 2 }}
-        onClick={(e)=>handleSubmit(e)}
       >
         Sign In
       </Button>
@@ -153,6 +137,7 @@ export default function Login({handleSignupOrLogin}) {
         Forgot password?
       </Link>
     </div>
+    </form>
     <div style={{display:'grid', flexDirection:'column', alignItems:'right', justifyContent:'right', paddingTop:'20px'}}>
       <Link href="/signup" variant="body1" >
           Don't have an account? Sign up

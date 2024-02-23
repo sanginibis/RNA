@@ -21,7 +21,7 @@ const saveBioInfoDataToDB = async (rnaName, rnaSequence) => {
     }
   } catch (error) {
       // when there is error, no data will be retrieved
-      bioinfoData = {}
+      bioinfoData = {message: "There is some connectivity issue. Please try after sometime.", err_no: "101"}
   }
 
   return bioinfoData;

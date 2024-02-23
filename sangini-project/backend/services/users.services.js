@@ -31,12 +31,12 @@ async function login(params, callback) {
 
     // username is required
     if (username === undefined || username === "") {
-        return callback({ message: "Username is required" });
+        return callback({ message: "Username is required", err_no: "102"  });
     }
 
     // password is required
     if (password === undefined || password === "") {
-        return callback({ message: "Password is required" });
+        return callback({ message: "Password is required", err_no: "102"  });
     }
 
     // find the user, match the hashed password and send the response
@@ -99,12 +99,12 @@ async function register(params, callback) {
 
     // username is required
     if (username === undefined || username==="") {
-        return callback({ message: "Username is required" });
+        return callback({ message: "Username is required", err_no: "102" });
     }
 
     // password is required
     if (password === undefined || password === "") {
-        return callback({ message: "Password is required" });
+        return callback({ message: "Password is required", err_no: "102"  });
     }
     
     // now get a connections, insert data and send the response
@@ -144,7 +144,7 @@ async function register(params, callback) {
         if (error.errno == "1062") {
             return callback({ message: "Username already exists", err_code: error.code, err_no: error.errno });
         }
-        return callback({message : error});
+        return callback({message : error, err_no: "202" });
     } 
 
 }

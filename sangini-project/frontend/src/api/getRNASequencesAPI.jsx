@@ -19,7 +19,8 @@ const getRNASequencesAPI = async () => {
     rnaSequences = responseData.data;
   } catch (error) {
       // when there is error, no data will be retrieved
-      rnaSequences = {}
+      rnaSequences = {message: "There is some connectivity issue. Please try after sometime.", err_no: "101"}
+
   }
   return rnaSequences[0];
 };

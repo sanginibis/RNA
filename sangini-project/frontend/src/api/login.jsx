@@ -18,7 +18,7 @@ const loginAPI = async (loginData) => {
       response = responseData;
 
   } catch (error) {
-      response = {}
+      response = {message: "There is some connectivity issue. Please try after sometime.", err_no: "101"}
   }
 
   return response;
